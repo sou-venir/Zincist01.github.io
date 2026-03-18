@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- 카톡, 트위터 공유 시 뜨는 미리보기 (Open Graph) -->
+    <meta property="og:title" content="Ayeon's Portfolio">
+    <meta property="og:description" content="디자인, 개발, 일러스트, 보컬로이드까지. 창작의 경계를 넘나드는 크리에이터 아연의 포트폴리오.">
+    <!-- 아연아! 아래 content 안에 네가 원하는 대표 이미지 링크를 넣으면 공유할 때 그 이미지가 떠! -->
+    <meta property="og:image" content="https://via.placeholder.com/800x400/b39ddb/ffffff?text=Ayeon+Portfolio">
+    <meta property="og:type" content="website">
+
+    <title>Ayeon's Portfolio</title>
+    
+    <!-- 트렌디하고 저작권 완전 무료인 프리텐다드 폰트 로드 -->
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
+    
+    <style>
+        /* =========================================
+           [디자인 시스템 & 변수 설정]
+        ========================================= */
+        :root {
+            --bg-color: #ffffff;
+            --text-main: #222222;
+            --text-sub: #777777;
+            --point-color: #b39ddb; /* 연보라색 */
+            --point-hover: #9575cd;
+            --border-color: #eaeaea;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --transition: all 0.3s ease;
+        }
+
+        /* 기본 리셋 & 프리텐다드 적용 */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+        button { font-family: inherit; cursor: pointer; }
+        
+        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-size: 2rem; font-weight: 300; margin-bottom: 40px; text-align: center; letter-spacing: 1px; }
+
+        /* =========================================
+           [네비게이션 바]
+        ========================================= */
+        header {
+            position: fixed; top: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px);
+            border-bottom: 1px solid var(--border-color); z-index: 100;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
+        .logo { font-size: 1.2rem; font-weight: 700; color: var(--point-color); letter-spacing: -0.5px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .nav-links a:hover { color: var(--point-color); }
+        .lang-toggle {
+            border: 1px solid var(--point-color); border-radius: 20px; padding: 4px 12px;
+            font-size: 0.8rem; color: var(--point-color); transition: var(--transition); font-weight: 600;
+        }
+        .lang-toggle:hover { background: var(--point-color); color: #fff; }
+
+        /* =========================================
+           [Hero 섹션]
+        ========================================= */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: none; }
+        .hero-title { font-size: 3.5rem; font-weight: 300; margin-bottom: 20px; letter-spacing: -1px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 40px; font-weight: 300; }
+        .btn {
+            display: inline-block; padding: 12px 32px; background: var(--point-color); color: #fff;
+            border-radius: 30px; font-weight: 500; transition: var(--transition); border: none; font-size: 1rem;
+        }
+        .btn:hover { background: var(--point-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
+
+        /* =========================================
+           [필터 & 카드 그리드]
+        ========================================= */
+        .filter-group { display: flex; justify-content: center; gap: 15px; margin-bottom: 40px; }
+        .filter-btn {
+            background: transparent; border: 1px solid var(--border-color); color: var(--text-sub);
+            padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; transition: var(--transition);
+        }
+        .filter-btn.active, .filter-btn:hover { background: var(--point-color); color: #fff; border-color: var(--point-color); }
+
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
+        .card { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #fff; transition: var(--transition); cursor: pointer; position: relative; }
+        .card:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
+        .card-img-wrap { width: 100%; aspect-ratio: 4/3; overflow: hidden; position: relative; background: #f9f9f9; }
+        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+        .card:hover img { transform: scale(1.03); }
+        .card-info { padding: 20px; }
+        .card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 6px; }
+        .card-desc { font-size: 0.9rem; color: var(--text-sub); }
+
+        /* =========================================
+           [18+ NSFW 블러 & 라이트박스]
+        ========================================= */
+        .nsfw-locked img { filter: blur(25px) grayscale(50%); transform: scale(1.1); }
+        .nsfw-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.4); display: flex; justify-content: center; align-items: center;
+            font-weight: 700; color: var(--point-color); font-size: 1.2rem; pointer-events: none;
+        }
+
+        /* 팝업 모달 (연령 확인 & 작품 보기 공통 배경) */
+        .modal-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: flex; justify-content: center; align-items: center; z-index: 1000;
+            opacity: 0; visibility: hidden; transition: var(--transition);
+        }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
+        
+        /* 연령 확인 모달 콘텐츠 */
+        .modal-box { background: #fff; padding: 40px; border-radius: 16px; text-align: center; max-width: 400px; }
+        .modal-box h3 { color: var(--point-color); margin-bottom: 15px; font-size: 1.3rem; }
+        .modal-box p { color: var(--text-sub); margin-bottom: 30px; font-size: 0.95rem; }
+        .modal-btns { display: flex; gap: 10px; justify-content: center; }
+        .btn-outline { background: transparent; color: var(--text-sub); border: 1px solid var(--border-color); }
+        .btn-outline:hover { background: #f5f5f5; color: var(--text-main); border-color: #ccc; }
+
+        /* 작품 보기 라이트박스 콘텐츠 */
+        .lightbox-content { display: none; flex-direction: column; align-items: center; max-width: 90%; max-height: 90vh; }
+        .lightbox-content img { max-width: 100%; max-height: 75vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain; }
+        .lightbox-info { margin-top: 20px; text-align: center; color: #fff; }
+        .lightbox-info h3 { font-size: 1.5rem; font-weight: 500; margin-bottom: 10px; }
+        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 2rem; cursor: pointer; transition: color 0.2s; }
+        .close-lightbox:hover { color: var(--point-color); }
+
+        /* =========================================
+           [뮤직 플레이어 (커스텀 & 플레이리스트)]
+        ========================================= */
+        .player-wrap {
+            max-width: 500px; margin: 0 auto; border: 1px solid var(--border-color);
+            border-radius: 16px; padding: 25px; display: flex; align-items: center; gap: 20px; background: #fff;
+        }
+        .album-cover { width: 90px; height: 90px; border-radius: 12px; object-fit: cover; background: #eee; flex-shrink: 0; box-shadow: var(--shadow); }
+        .player-info { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; }
+        .track-title { font-size: 1.1rem; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        
+        .controls-row { display: flex; align-items: center; gap: 15px; }
+        .ctrl-btn { background: none; border: none; font-size: 1.2rem; color: var(--text-main); cursor: pointer; transition: color 0.2s; }
+        .ctrl-btn:hover { color: var(--point-color); }
+        .play-btn {
+            width: 40px; height: 40px; border-radius: 50%; background: var(--point-color); color: #fff;
+            display: flex; justify-content: center; align-items: center; font-size: 1rem; transition: var(--transition); border: none; cursor: pointer;
+        }
+        .play-btn:hover { background: var(--point-hover); transform: scale(1.05); }
+        
+        .progress-container { display: flex; align-items: center; gap: 10px; width: 100%; }
+        .progress-bar { width: 100%; -webkit-appearance: none; height: 4px; background: var(--border-color); border-radius: 2px; outline: none; }
+        .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--point-color); cursor: pointer; }
+        .time-display { font-size: 0.75rem; color: var(--text-sub); min-width: 35px; }
+
+        /* =========================================
+           [About & Contact]
+        ========================================= */
+        .about-wrap { text-align: center; }
+        .profile-icon { width: 100px; height: 100px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 1px solid var(--border-color); }
+        .sns-links { display: flex; justify-content: center; gap: 20px; margin-top: 25px; }
+        .sns-links a { color: var(--text-sub); transition: color 0.2s; display: flex; align-items: center; }
+        .sns-links a:hover { color: var(--point-color); }
+        .sns-links svg { width: 24px; height: 24px; fill: currentColor; }
+        
+        footer { text-align: center; padding: 40px 0; color: var(--text-sub); font-size: 0.85rem; border-top: 1px solid var(--border-color); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container nav-inner">
+            <div class="logo">Ayeon.</div>
+            <nav class="nav-links">
+                <a href="#work" data-i18n="nav_work">Work</a>
+                <a href="#fanworks" data-i18n="nav_fanworks">Fanworks</a>
+                <a href="#music" data-i18n="nav_music">Music</a>
+                <a href="#about" data-i18n="nav_about">About</a>
+                <div class="lang-toggle" id="langToggle">KR</div>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="container">
+            <h1 class="hero-title" data-i18n="hero_title">창작의 경계를 넘나들다</h1>
+            <p class="hero-subtitle" data-i18n="hero_desc">일러스트, 동인지, 웹 프론트엔드, 그리고 보컬로이드 음악까지.</p>
+            <a href="#work" class="btn" data-i18n="hero_btn">포트폴리오 보기</a>
+        </div>
+    </section>
+
+    <!-- Work 섹션 (필터 포함) -->
+    <section id="work">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_work">Work</h2>
+            
+            <div class="filter-group">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="frontend">Frontend</button>
+                <button class="filter-btn" data-filter="illustration">Illustration</button>
+            </div>
+
+            <div class="grid" id="workGrid"></div>
+        </div>
+    </section>
+
+    <!-- Fanworks 섹션 -->
+    <section id="fanworks">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_fanworks">Fanworks</h2>
+            <div class="grid" id="fanworkGrid"></div>
+        </div>
+    </section>
+
+    <!-- Music 섹션 (플레이리스트 기능) -->
+    <section id="music">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_music">Music</h2>
+            <div class="player-wrap">
+                <!-- 앨범 커버 이미지 -->
+                <img src="" alt="Album Cover" class="album-cover" id="albumCover">
+                
+                <div class="player-info">
+                    <div class="track-title" id="trackTitle">Loading...</div>
+                    <audio id="vocaloidAudio"></audio>
+                    
+                    <div class="progress-container">
+                        <span class="time-display" id="currentTime">0:00</span>
+                        <input type="range" class="progress-bar" id="progressBar" value="0" step="1">
+                        <span class="time-display" id="durationTime">0:00</span>
+                    </div>
+
+                    <div class="controls-row">
+                        <button class="ctrl-btn" id="prevBtn">⏮</button>
+                        <button class="play-btn" id="playBtn">▶</button>
+                        <button class="ctrl-btn" id="nextBtn">⏭</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About 섹션 -->
+    <section id="about" style="border-bottom: none;">
+        <div class="container about-wrap">
+            <!-- 아연아! 여기에 네 프로필 아이콘 이미지 경로를 넣어줘 -->
+            <img src="https://via.placeholder.com/150x150/eeeeee/b39ddb?text=Icon" alt="Profile Icon" class="profile-icon">
+            <h2 class="section-title" data-i18n="sec_about" style="margin-bottom: 10px;">Ayeon</h2>
+            <p style="color: var(--text-sub);" data-i18n="about_desc">디자인과 개발, 그리고 서브컬쳐를 사랑하는 크리에이터입니다.</p>
+            <p style="margin-top: 10px;">Email: <a href="mailto:ayeon@example.com" style="color: var(--point-color);">ayeon@example.com</a></p>
+            
+            <div class="sns-links">
+                <!-- 트위터 -->
+                <a href="#" target="_blank" aria-label="Twitter">
+                    <svg viewBox="0 0 24 24"><path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/></svg>
+                </a>
+                <!-- 깃허브 -->
+                <a href="#" target="_blank" aria-label="GitHub">
+                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+                </a>
+                <!-- 유튜브 -->
+                <a href="#" target="_blank" aria-label="YouTube">
+                    <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>&copy; 2024 Ayeon. All rights reserved.</footer>
+
+    <!-- 글로벌 모달 배경 (연령 확인 & 라이트박스 공통) -->
+    <div class="modal-overlay" id="globalModal">
+        
+        <!-- 1. 18+ 연령 확인 박스 -->
+        <div class="modal-box" id="ageBox" style="display: none;">
+            <h3 data-i18n="modal_title">연령 확인 (18+)</h3>
+            <p data-i18n="modal_desc">이 콘텐츠는 성인물(18금)을 포함하고 있습니다.<br>만 18세 이상이십니까?</p>
+            <div class="modal-btns">
+                <button class="btn btn-outline" id="modalNo" data-i18n="modal_no">아니오</button>
+                <button class="btn" id="modalYes" data-i18n="modal_yes">네, 성인입니다</button>
+            </div>
+        </div>
+
+        <!-- 2. 작품 화면 띄우기 (라이트박스) -->
+        <div class="lightbox-content" id="lightboxBox" style="display: none;">
+            <span class="close-lightbox" id="closeLightbox">&times;</span>
+            <img id="lightboxImg" src="" alt="Artwork Full View">
+            <div class="lightbox-info">
+                <h3 id="lightboxTitle">Title</h3>
+                <div id="lightboxLinkWrap" style="margin-top: 15px;"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- =========================================
+         [JavaScript 로직]
+    ========================================= -->
+    <script>
+        /* ---------------------------------------------------
+           1. 작품 데이터 관리 (카테고리 & 고해상도 이미지 추가)
+        --------------------------------------------------- */
+        const worksData = [
+            // Work (category: frontend / illustration)
+            { id: 1, type: 'work', category: 'frontend', isAdult: false, img: 'https://via.placeholder.com/600x450/f9f9f9/b39ddb?text=Web+Project', fullImg: 'https://via.placeholder.com/1200x900/f9f9f9/b39ddb?text=Web+Project+Full', title: { kr: '프론트엔드 외주', jp: 'フロントエンド外注' }, desc: { kr: 'React 쇼핑몰 UI', jp: 'React ECサイト' }, link: 'https://github.com' },
+            { id: 2, type: 'work', category: 'illustration', isAdult: false, img: 'https://via.placeholder.com/600x450/f9f9f9/b39ddb?text=Illustration', fullImg: 'https://via.placeholder.com/1200x900/f9f9f9/b39ddb?text=Illustration+Full', title: { kr: '상업용 일러스트', jp: '商業用イラスト' }, desc: { kr: '모바일 게임 캐릭터', jp: 'ゲームキャラクター' }, link: '' },
+            
+            // Fanworks (일반 + 18금)
+            { id: 3, type: 'fanwork', category: 'fanart', isAdult: false, img: 'https://via.placeholder.com/600x450/f9f9f9/b39ddb?text=Fanart', fullImg: 'https://via.placeholder.com/1200x900/f9f9f9/b39ddb?text=Fanart+Full', title: { kr: '전체관람가 팬아트', jp: '全年齢ファンアート' }, desc: { kr: '귀여운 캐릭터', jp: '可愛いキャラクター' }, link: '' },
+            { id: 4, type: 'fanwork', category: 'doujin', isAdult: true, img: 'https://via.placeholder.com/600x450/f9f9f9/ff8a80?text=R-18+Doujinshi', fullImg: 'https://via.placeholder.com/1200x900/f9f9f9/ff8a80?text=R-18+Full+Page', title: { kr: '동인지 신간', jp: '同人誌 新刊' }, desc: { kr: '여름 코미케 출품 (R-18)', jp: '夏コミ出品 (R-18)' }, link: 'https://pixiv.net' }
+        ];
+
+        let currentLang = 'kr';
+        let isAdultVerified = false;
+        let currentFilter = 'all';
+
+        /* ---------------------------------------------------
+           2. 다국어 사전
+        --------------------------------------------------- */
+        const i18n = {
+            kr: {
+                nav_work: 'Work', nav_fanworks: 'Fanworks', nav_music: 'Music', nav_about: 'About',
+                hero_title: '창작의 경계를 넘나들다', hero_desc: '일러스트, 동인지, 웹 프론트엔드, 그리고 보컬로이드 음악까지.', hero_btn: '포트폴리오 보기',
+                sec_work: 'Work', sec_fanworks: 'Fanworks', sec_music: 'Music', sec_about: 'About',
+                about_desc: '디자인과 개발, 그리고 서브컬쳐를 사랑하는 크리에이터입니다.',
+                modal_title: '연령 확인 (18+)', modal_desc: '이 콘텐츠는 성인물(18금)을 포함하고 있습니다.<br>만 18세 이상이십니까?', modal_no: '아니오', modal_yes: '네, 성인입니다',
+                nsfw_text: '18+ (Click)', visit_site: '웹사이트 방문하기'
+            },
+            jp: {
+                nav_work: '仕事', nav_fanworks: '二次創作', nav_music: '音楽', nav_about: '自己紹介',
+                hero_title: '創作の境界を越えて', hero_desc: 'イラスト、同人誌、フロントエンド、そしてボカロ曲まで。', hero_btn: '作品を見る',
+                sec_work: 'Work', sec_fanworks: 'Fanworks', sec_music: 'Music', sec_about: 'About',
+                about_desc: 'デザインと開発、サブカルチャーを愛するクリエイターです。',
+                modal_title: '年齢確認 (18+)', modal_desc: 'このコンテンツには成人向け(R-18)が含まれています。<br>18歳以上ですか？', modal_no: 'いいえ', modal_yes: 'はい、18歳以上です',
+                nsfw_text: 'R-18 (Click)', visit_site: 'サイトへ行く'
+            }
+        };
+
+        /* ---------------------------------------------------
+           3. 렌더링 & 필터링 함수
+        --------------------------------------------------- */
+        function renderWorks() {
+            const workGrid = document.getElementById('workGrid');
+            const fanworkGrid = document.getElementById('fanworkGrid');
+            workGrid.innerHTML = ''; fanworkGrid.innerHTML = '';
+
+            worksData.forEach(item => {
+                // 필터 적용 (Work 섹션만 해당)
+                if (item.type === 'work' && currentFilter !== 'all' && item.category !== currentFilter) return;
+
+                const isLocked = item.isAdult && !isAdultVerified;
+                
+                // 데이터를 문자열로 숨겨둬서 클릭 시 꺼내 씀
+                const cardHTML = `
+                    <div class="card ${isLocked ? 'nsfw-locked' : ''}" 
+                         data-id="${item.id}">
+                        <div class="card-img-wrap">
+                            <img src="${item.img}" alt="thumbnail">
+                            ${isLocked ? `<div class="nsfw-overlay">${i18n[currentLang].nsfw_text}</div>` : ''}
+                        </div>
+                        <div class="card-info">
+                            <h3 class="card-title">${item.title[currentLang]}</h3>
+                            <p class="card-desc">${item.desc[currentLang]}</p>
+                        </div>
+                    </div>
+                `;
+
+                if (item.type === 'work') workGrid.insertAdjacentHTML('beforeend', cardHTML);
+                if (item.type === 'fanwork') fanworkGrid.insertAdjacentHTML('beforeend', cardHTML);
+            });
+            attachCardEvents();
+        }
+
+        // 필터 버튼 클릭 이벤트
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentFilter = e.target.getAttribute('data-filter');
+                renderWorks();
+            });
+        });
+
+        /* ---------------------------------------------------
+           4. 라이트박스(이미지 크게 보기) 및 18+ 로직
+        --------------------------------------------------- */
+        const globalModal = document.getElementById('globalModal');
+        const ageBox = document.getElementById('ageBox');
+        const lightboxBox = document.getElementById('lightboxBox');
+        let pendingWorkId = null;
+
+        function attachCardEvents() {
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const id = parseInt(this.getAttribute('data-id'));
+                    const work = worksData.find(w => w.id === id);
+
+                    if (work.isAdult && !isAdultVerified) {
+                        // 성인 인증 안 됐으면 모달 띄우기
+                        pendingWorkId = id;
+                        globalModal.classList.add('active');
+                        ageBox.style.display = 'block';
+                        lightboxBox.style.display = 'none';
+                    } else {
+                        // 인증됐거나 일반 작품이면 바로 라이트박스 띄우기
+                        openLightbox(work);
+                    }
+                });
+            });
+        }
+
+        // 모달에서 '아니오'
+        document.getElementById('modalNo').addEventListener('click', () => {
+            globalModal.classList.remove('active');
+            pendingWorkId = null;
+        });
+
+        // 모달에서 '네 성인입니다'
+        document.getElementById('modalYes').addEventListener('click', () => {
+            isAdultVerified = true;
+            renderWorks(); // 화면 다시 그려서 블러 싹 해제
+            if(pendingWorkId) {
+                const work = worksData.find(w => w.id === pendingWorkId);
+                openLightbox(work); // 원래 보려던 작품 열어주기
+            }
+        });
+
+        // 라이트박스 열기 함수
+        function openLightbox(work) {
+            ageBox.style.display = 'none';
+            lightboxBox.style.display = 'flex';
+            globalModal.classList.add('active');
+            
+            document.getElementById('lightboxImg').src = work.fullImg;
+            document.getElementById('lightboxTitle').innerText = work.title[currentLang];
+            
+            const linkWrap = document.getElementById('lightboxLinkWrap');
+            if(work.link) {
+                linkWrap.innerHTML = `<a href="${work.link}" target="_blank" class="btn">${i18n[currentLang].visit_site}</a>`;
+            } else {
+                linkWrap.innerHTML = '';
+            }
+        }
+
+        // 라이트박스 닫기
+        document.getElementById('closeLightbox').addEventListener('click', () => {
+            globalModal.classList.remove('active');
+        });
+        // 배경 클릭 시 닫기
+        globalModal.addEventListener('click', (e) => {
+            if(e.target === globalModal) globalModal.classList.remove('active');
+        });
+
+        /* ---------------------------------------------------
+           5. 다국어 전환 로직
+        --------------------------------------------------- */
+        const langToggle = document.getElementById('langToggle');
+        function updateLanguage() {
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (i18n[currentLang][key]) el.innerHTML = i18n[currentLang][key];
+            });
+            renderWorks();
+            loadSong(); // 언어 바뀔 때 노래 제목도 바뀌게 업데이트
+        }
+        langToggle.addEventListener('click', () => {
+            currentLang = currentLang === 'kr' ? 'jp' : 'kr';
+            langToggle.innerText = currentLang === 'kr' ? 'JP' : 'KR';
+            updateLanguage();
+        });
+
+        /* ---------------------------------------------------
+           6. 보컬로이드 플레이리스트 로직
+        --------------------------------------------------- */
+        const playlist = [
+            { title: { kr: "Vocaloid - 별의 조각", jp: "Vocaloid - 星の欠片" }, src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", cover: "https://via.placeholder.com/150x150/f5f5f5/b39ddb?text=Cover+1" },
+            { title: { kr: "Vocaloid - 달빛 바다", jp: "Vocaloid - 月光の海" }, src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", cover: "https://via.placeholder.com/150x150/f5f5f5/b39ddb?text=Cover+2" }
+        ];
+
+        let songIndex = 0;
+        const audio = document.getElementById('vocaloidAudio');
+        const playBtn = document.getElementById('playBtn');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const progressBar = document.getElementById('progressBar');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationTimeEl = document.getElementById('durationTime');
+
+        function loadSong() {
+            const song = playlist[songIndex];
+            document.getElementById('trackTitle').innerText = song.title[currentLang];
+            document.getElementById('albumCover').src = song.cover;
+            
+            // 노래 소스가 다르면 새로 로드
+            if (!audio.src.includes(song.src)) {
+                audio.src = song.src;
+            }
+        }
+
+        function playSong() {
+            audio.play();
+            playBtn.innerText = '⏸';
+        }
+        function pauseSong() {
+            audio.pause();
+            playBtn.innerText = '▶';
+        }
+
+        playBtn.addEventListener('click', () => {
+            audio.paused ? playSong() : pauseSong();
+        });
+
+        prevBtn.addEventListener('click', () => {
+            songIndex = (songIndex - 1 + playlist.length) % playlist.length;
+            loadSong(); playSong();
+        });
+
+        nextBtn.addEventListener('click', () => {
+            songIndex = (songIndex + 1) % playlist.length;
+            loadSong(); playSong();
+        });
+
+        audio.addEventListener('ended', () => {
+            // 한 곡 끝나면 자동으로 다음 곡 재생
+            nextBtn.click();
+        });
+
+        function formatTime(sec) {
+            const m = Math.floor(sec / 60); const s = Math.floor(sec % 60);
+            return `${m}:${s < 10 ? '0' : ''}${s}`;
+        }
+
+        audio.addEventListener('loadedmetadata', () => {
+            progressBar.max = Math.floor(audio.duration);
+            durationTimeEl.innerText = formatTime(audio.duration);
+        });
+
+        audio.addEventListener('timeupdate', () => {
+            progressBar.value = Math.floor(audio.currentTime);
+            currentTimeEl.innerText = formatTime(audio.currentTime);
+        });
+
+        progressBar.addEventListener('input', () => {
+            audio.currentTime = progressBar.value;
+        });
+
+        /* --- 초기화 --- */
+        updateLanguage();
+        loadSong(); // 첫 번째 곡 로드
+
+    </script>
+</body>
+</html>
