@@ -390,7 +390,7 @@
                 sec_schedule: 'Event Schedule', title_doujin: '同人誌', title_illust: 'ビジュアルワークス',
                 about_desc: '創作することが大好きです。',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
-                modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '進む',
+                modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '確認しました',
                 warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？',
                 btn_pixiv: 'Pixivで見る', warning_prefix: '注意要素:'
             },
@@ -423,51 +423,52 @@
         const worksData = [
             { 
                 id: 1, type: 'doujin', tw: '근친상간', 
-                img: 'Zincist01.github.io/142444971_p0_master1200.jpg', 
-                link: 'https://www.pixiv.net/artworks/116900403', // 예시: 실제 주소로 바꿔!
-                title: { ko: '카지시유 - SIBLINGS IN BED', en: 'Kieran x Carmine - SIBLINGS IN BED', jp: 'スグゼイ - SIBILINGS IN BED', 'zh-cn': '乌栗丹瑜 - SIBILINGS IN BED', 'zh-tw': '烏栗丹瑜 - SIBILINGS IN BED' }, 
+                img: './142444971_p0_master1200.jpg', 
+                link: 'https://www.pixiv.net/artworks/142444971', 
+                title: { ko: '카지시유 - SIBILINGS IN BED', en: 'Kieran x Carmine - SIBILINGS IN BED', jp: 'スグゼイ - SIBILINGS IN BED', 'zh-cn': '乌栗丹瑜 - SIBILINGS IN BED', 'zh-tw': '烏栗丹瑜 - SIBILINGS IN BED' }, 
                 spec: '7/20　COMIC WORLD SUMMER 2025 R15/A5/12p',
                 desc: { 
                     ko: '예약 실수로 침대를 같이 쓰게 된 남매의 이야기.', 
                     en: 'A story of siblings who end up sharing a bed due to a reservation error.', 
-                    jp: '予約ミスでベッドを共にすることになった姉弟の物語。',
+                    jp: '予約ミスでベッド를 共にすることになった姉弟の物語。',
                     'zh-cn': '由于预约失误而不得不共用一张床的姐弟俩的故事。',
                     'zh-tw': '由於預約失誤而不得不共用一張床的姐弟倆的故事。'
                 }
             },
             { 
                 id: 2, type: 'doujin', tw: '근친상간', 
-                img: 'Zincist01.github.io/142481386_p0_master1200.jpg', 
+                img: './142481386_p0_master1200.jpg', 
                 link: 'https://www.pixiv.net/artworks/142481386', 
-                title: { ko: '카지시유 - 누나의 유혹', en: 'Kieran x Carmine - Lure of Sister', jp: 'スグゼイ - 姉の誘惑', 'zh-cn': '乌栗丹瑜 - 姐姐的诱惑', 'zh-tw': '烏栗丹瑜 - 姐姐的誘惑' }, 
+                title: { ko: '카지시유 - 누나의 유혹', en: 'Kieran x Carmine - Lure of Sister', jp: 'スグゼイ - 姉の誘惑', 'zh-cn': '乌栗丹瑜 - 姐姐的诱惑', 'zh-tw': '烏栗丹瑜 - 姐姐의 誘惑' }, 
                 spec: '3/20　HARU COMIC CITY 35 R18/A5/24p',
                 desc: { 
                     ko: '번외편 후 시점, 실패한 첫날밤을 만회하기 위해 시유를 유혹하는 카지의 이야기.', 
                     en: 'Post-epilogue story: Kieran tries to seduce Carmine to make up for their failed first night.', 
                     jp: '番外編後の時点、失敗した初夜を挽回するためにゼイユを誘惑するスグリの物語。',
                     'zh-cn': '番外篇之后，乌栗为了弥补失败的初夜而诱惑丹瑜的故事。',
-                    'zh-tw': '番外篇之後，烏栗為了彌補失敗的初夜而誘惑丹瑜的故事。'
+                    'zh-tw': '番外篇之後，烏栗為了彌補失敗의 初夜而誘惑丹瑜的故事。'
                 }
             },
             { 
                 id: 3, type: 'doujin', tw: '', 
-                img: 'Zincist01.github.io/cover3.jpg',  
+                img: './cover3.jpg',  
+                link: 'https://pixiv.net', // <- 링크 추가함!
                 title: { ko: '투희엔 - 예정', en: 'Hilda x N - Planned', jp: 'トコN - 予定', 'zh-cn': '主♀N - 计划中', 'zh-tw': '主♀N - 計劃中' }, 
                 spec: '8월 쾌청주의보 발매 예정',
                 desc: { 
                     ko: '트위터에 올린 투희엔 만화의 재록본입니다.', 
                     en: 'A collection of Hilda x N comics previously posted on Twitter.', 
-                    jp: 'Twitterに投稿したトコN漫画の再録本です。',
+                    jp: 'Twitter에 投稿한 トコN漫畵의 再錄本입니다.',
                     'zh-cn': '在 Twitter 上发布的 主♀N 漫画的再录本。',
                     'zh-tw': '在 Twitter 上發佈的 主♀N 漫畫的再錄本。'
                 }
             },
-            { id: 4, type: 'illust', tw: '', img: 'Zincist01.github.io/118748766_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118748766' },
-            { id: 5, type: 'illust', tw: '', img: 'Zincist01.github.io/118754068_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118754068' },
-            { id: 6, type: 'illust', tw: '', img: 'Zincist01.github.io/122116030_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/122116030' },
-            { id: 7, type: 'illust', tw: '', img: 'Zincist01.github.io/128338498_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/128338498' },
-            { id: 8, type: 'illust', tw: '', img: 'Zincist01.github.io/130002618_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/130002618' },
-            { id: 9, type: 'illust', tw: '', img: 'Zincist01.github.io/134869968_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/134869968' },
+            { id: 4, type: 'illust', tw: '', img: './118748766_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118748766' },
+            { id: 5, type: 'illust', tw: '', img: './118754068_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118754068' },
+            { id: 6, type: 'illust', tw: '', img: './122116030_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/122116030' },
+            { id: 7, type: 'illust', tw: '', img: './128338498_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/128338498' },
+            { id: 8, type: 'illust', tw: '', img: './130002618_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/130002618' },
+            { id: 9, type: 'illust', tw: '', img: './134869968_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/134869968' },
             { id: 10, type: 'illust', tw: 'R-18, 여남박', img: './136113680_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/136113680' }
         ];
 
