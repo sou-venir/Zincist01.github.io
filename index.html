@@ -3,293 +3,320 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayeon | Archive</title>
     
-    <meta property="og:title" content="Ayeon - The Creator Soul">
-    <meta property="og:description" content="일러스트, 동인지, 작곡까지. 내 이야기를 늘어놓는 창작자 아연의 포트폴리오.">
-    <!-- 아연아! 아래에 네 대표 작품 이미지 링크를 넣어! -->
-    <meta property="og:image" content="https://via.placeholder.com/800x400/b39ddb/ffffff?text=Ayeon+Portfolio">
+    <!-- 구글 폰트: 나눔명조(KR), Noto Serif JP(JP), Playfair Display(EN), Noto Serif SC/TC(CN/TW) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
 
-    <title>Ayeon - Portfolio</title>
-    
-    <!-- 프리텐다드 폰트 -->
-    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
-    
     <style>
         /* =========================================
-           [디자인 시스템 & 변수 설정]
+           [디자인 시스템]
         ========================================= */
         :root {
-            --bg-color: #ffffff;
-            --text-main: #222222;
-            --text-sub: #777777;
-            --point-color: #b39ddb; /* 연보라 */
-            --point-hover: #9575cd;
-            --danger-color: #ff5252; /* 민감소재/18금 경고용 붉은색 */
-            --border-color: #eaeaea;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
-            --transition: all 0.3s ease;
+            --bg-color: #f8f6f0; 
+            --text-main: #2b2b2b; 
+            --text-sub: #7a756d;
+            --point-color: #a685e2; /* 연보라색 유지 */
+            --border-color: #dcd7ce;
+            --police-yellow: #f1c40f; 
+            --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            
+            --font-ko: 'Nanum Myeongjo', serif;
+            --font-en: 'Playfair Display', serif;
+            --font-jp: 'Noto Serif JP', serif;
+            --font-zh-cn: 'Noto Serif SC', serif;
+            --font-zh-tw: 'Noto Serif TC', serif;
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: "Pretendard Variable", Pretendard, sans-serif; background-color: var(--bg-color); color: var(--text-main); line-height: 1.6; overflow-x: hidden; }
+        body { font-family: var(--font-ko); background-color: var(--bg-color); color: var(--text-main); line-height: 1.7; overflow-x: hidden; margin: 0; padding: 0; }
+        body[data-lang="ko"] { font-family: var(--font-ko); }
+        body[data-lang="en"] { font-family: var(--font-en); letter-spacing: 0.5px; }
+        body[data-lang="jp"] { font-family: var(--font-jp); }
+        body[data-lang="zh-cn"] { font-family: var(--font-zh-cn); }
+        body[data-lang="zh-tw"] { font-family: var(--font-zh-tw); }
+
+        * { box-sizing: border-box; }
         a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
         button { font-family: inherit; cursor: pointer; }
-        
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-        section { padding: 100px 0; border-bottom: 1px solid var(--border-color); }
-        .section-title { font-size: 2rem; font-weight: 300; margin-bottom: 40px; text-align: center; letter-spacing: 1px; }
+
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
+        section { padding: 120px 0; border-bottom: 1px solid var(--border-color); }
+        .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 60px; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
 
         /* =========================================
-           [네비게이션 & 4개 국어 토글]
+           [헤더 & 5개 국어 토글]
         ========================================= */
-        header { position: fixed; top: 0; width: 100%; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(5px); border-bottom: 1px solid var(--border-color); z-index: 100; }
+        header { position: fixed; top: 0; width: 100%; background: rgba(248, 246, 240, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); z-index: 100; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
-        .logo { font-size: 1.3rem; font-weight: 800; color: var(--point-color); letter-spacing: -0.5px; }
-        .nav-links { display: flex; gap: 20px; align-items: center; }
-        .nav-links a { font-weight: 500; font-size: 0.95rem; transition: var(--transition); }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--point-color); letter-spacing: 1px; }
+        .nav-links { display: flex; gap: 30px; align-items: center; }
+        .nav-links a { font-size: 0.85rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1.5px; }
         .nav-links a:hover { color: var(--point-color); }
         
-        /* 언어 토글 (KR / EN / CN / TW) */
-        .lang-group { display: flex; gap: 2px; background: #f5f5f5; padding: 4px; border-radius: 20px; margin-left: 10px; }
-        .lang-btn { background: transparent; border: none; padding: 4px 8px; border-radius: 15px; font-size: 0.75rem; font-weight: 600; color: var(--text-sub); transition: var(--transition); }
-        .lang-btn.active, .lang-btn:hover { background: var(--point-color); color: #fff; }
+        .lang-group { display: flex; gap: 10px; margin-left: 20px; border-left: 1px solid var(--border-color); padding-left: 20px; }
+        .lang-btn { background: none; border: none; font-size: 0.8rem; font-weight: 700; color: var(--text-sub); transition: color 0.3s; padding: 0; }
+        .lang-btn.active, .lang-btn:hover { color: var(--point-color); }
 
         /* =========================================
-           [Hero 섹션 (아연이의 철학 & 커미션)]
+           [Hero: 완전히 전문적이고 구조적인 디자인]
         ========================================= */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; border-bottom: none; background: linear-gradient(180deg, #fafafa 0%, #fff 100%); }
-        .hero-quote { font-size: 1.2rem; font-weight: 600; color: var(--point-color); margin-bottom: 15px; }
-        .hero-title { font-size: 3.5rem; font-weight: 800; margin-bottom: 20px; letter-spacing: -1.5px; word-break: keep-all; line-height: 1.2; }
-        .hero-subtitle { font-size: 1.1rem; color: var(--text-sub); margin-bottom: 40px; font-weight: 400; max-width: 600px; word-break: keep-all; }
-        .hero-badges { display: flex; gap: 10px; justify-content: center; margin-bottom: 30px; }
-        .badge { padding: 6px 14px; background: #fff; border: 1px solid var(--border-color); border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-main); box-shadow: var(--shadow); }
-        .badge span { color: var(--point-color); }
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); padding-top: 70px; }
         
-        .hero-btns { display: flex; gap: 15px; }
-        .btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 30px; background: var(--point-color); color: #fff; border-radius: 30px; font-weight: 600; transition: var(--transition); border: none; font-size: 1rem; }
-        .btn:hover { background: var(--point-hover); transform: translateY(-2px); box-shadow: var(--shadow); }
-        .btn-crepe { background: #FFD54F; color: #333; } /* 크레페 시그니처 옐로우 */
-        .btn-crepe:hover { background: #FFC107; }
-
-        /* =========================================
-           [필터 & 카드 그리드 (Works)]
-        ========================================= */
-        .filter-group { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin-bottom: 40px; }
-        .filter-btn { background: transparent; border: 1px solid var(--border-color); color: var(--text-sub); padding: 8px 20px; border-radius: 20px; font-size: 0.9rem; transition: var(--transition); }
-        .filter-btn.active, .filter-btn:hover { background: var(--point-color); color: #fff; border-color: var(--point-color); }
-
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 30px; }
-        .card { border: 1px solid var(--border-color); border-radius: 12px; overflow: hidden; background: #fff; transition: var(--transition); cursor: pointer; position: relative; }
-        .card:hover { box-shadow: var(--shadow); transform: translateY(-5px); }
-        .card-img-wrap { width: 100%; aspect-ratio: 1/1; overflow: hidden; position: relative; background: #f9f9f9; }
-        .card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
-        .card:hover img { transform: scale(1.03); }
+        .hero-inner { width: 100%; text-align: center; }
         
-        .card-info { padding: 20px; }
-        .card-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 6px; }
-        .card-desc { font-size: 0.9rem; color: var(--text-sub); }
+        /* 전문성을 강조하는 상단 레이블 */
+        .hero-label { font-family: sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; color: var(--text-sub); text-transform: uppercase; margin-bottom: 20px; }
+        
+        /* 거대하고 압도적인 영문 메인 타이틀 */
+        .hero-title-en { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 800; margin: 0; line-height: 1; letter-spacing: -2px; color: var(--text-main); }
+        
+        /* 다국어가 적용되는 프로페셔널 서브 타이틀 */
+        .hero-subtitle { font-size: 1.2rem; font-weight: 400; color: var(--text-sub); margin: 30px auto 40px; max-width: 600px; line-height: 1.6; word-break: keep-all; }
+        
+        /* 데이터 포인트 (스펙을 시크하게 나열) */
+        .hero-data-row { display: flex; justify-content: center; gap: 40px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 20px 0; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
+        .data-item { display: flex; flex-direction: column; align-items: center; }
+        .data-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--point-color); line-height: 1; }
+        .data-label { font-family: sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; color: var(--text-sub); text-transform: uppercase; margin-top: 5px; }
+
+        .btn-outline { display: inline-block; padding: 14px 40px; border: 1px solid var(--text-main); color: var(--text-main); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); background: transparent; font-family: sans-serif; font-weight: 700; }
+        .btn-outline:hover { background: var(--point-color); border-color: var(--point-color); color: #fff; }
 
         /* =========================================
-           [18+ & TW (Trigger Warning) 블러 효과]
+           [작품: 동인지 (A5) & 픽시브 로그 (Square)]
         ========================================= */
-        .tw-locked img { filter: blur(30px) grayscale(30%); transform: scale(1.1); }
-        .tw-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); display: flex; flex-direction: column; justify-content: center; align-items: center;
-            color: #fff; pointer-events: none; text-align: center; padding: 20px;
-        }
-        .tw-icon { font-size: 2rem; margin-bottom: 10px; color: var(--danger-color); }
-        .tw-text { font-weight: 700; font-size: 1.1rem; letter-spacing: 1px; }
+        .subsection-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 30px; border-left: 4px solid var(--point-color); padding-left: 15px; }
+        
+        .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 40px; margin-bottom: 80px; }
+        .catalog-card { display: block; text-align: center; cursor: pointer; }
+        .catalog-img-wrap { width: 100%; aspect-ratio: 1 / 1.414; background: #eee; margin-bottom: 15px; position: relative; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 5px 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
+        .catalog-card:hover .catalog-img-wrap { transform: translateY(-5px); box-shadow: 5px 15px 25px rgba(166, 133, 226, 0.2); }
+        .catalog-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+        .catalog-info h3 { font-size: 1.1rem; margin: 0 0 5px 0; }
+        .catalog-info p { font-size: 0.85rem; color: var(--text-sub); margin: 0; }
+
+        .log-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
+        .log-card { display: block; cursor: pointer; }
+        .log-img-wrap { width: 100%; aspect-ratio: 1 / 1; background: #eee; position: relative; overflow: hidden; transition: var(--transition); border: 1px solid var(--border-color); }
+        .log-card:hover .log-img-wrap { transform: scale(1.02); box-shadow: 0 10px 20px rgba(166, 133, 226, 0.15); }
+        .log-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
         /* =========================================
-           [모달 (연령 확인 & 취향 경고 & 라이트박스)]
+           [폴리스 라인 (경고창) 효과]
         ========================================= */
-        .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(8px);
-            display: flex; justify-content: center; align-items: center; z-index: 1000;
-            opacity: 0; visibility: hidden; transition: var(--transition);
+        .tw-locked img { filter: blur(25px) grayscale(40%); }
+        .police-line {
+            position: absolute; top: 50%; left: -10%; width: 120%; height: 40px;
+            background: repeating-linear-gradient(45deg, var(--police-yellow), var(--police-yellow) 15px, #111 15px, #111 30px);
+            transform: translateY(-50%) rotate(-10deg);
+            display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2;
         }
+        .police-text { background: #111; color: var(--police-yellow); padding: 2px 10px; font-weight: 800; font-family: sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
+
+        /* =========================================
+           [음악: LP판 (Vinyl) 플레이어]
+        ========================================= */
+        .lp-player-container { display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; background: #fdfdfc; padding: 50px; border: 1px solid var(--border-color); box-shadow: 10px 10px 0px rgba(166, 133, 226, 0.1); }
+        
+        .lp-visual { position: relative; width: 200px; height: 200px; }
+        .lp-record { width: 100%; height: 100%; background: #111; border-radius: 50%; border: 2px solid #333; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; }
+        .lp-record::before { content: ''; position: absolute; width: 80%; height: 80%; border: 1px solid #222; border-radius: 50%; }
+        .lp-record::after { content: ''; position: absolute; width: 60%; height: 60%; border: 1px solid #222; border-radius: 50%; }
+        
+        .lp-label { width: 70px; height: 70px; border-radius: 50%; background: var(--point-color); overflow: hidden; z-index: 2; border: 2px solid #111; position: relative; display: flex; justify-content: center; align-items: center; }
+        .lp-label img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
+        .lp-label::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--bg-color); border-radius: 50%; }
+
+        @keyframes spin { 100% { transform: rotate(360deg); } }
+        .lp-record.playing { animation: spin 4s linear infinite; }
+
+        .lp-controls { width: 300px; }
+        .lp-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
+        .lp-artist { font-size: 0.9rem; color: var(--point-color); margin-bottom: 20px; font-style: italic; }
+        
+        .lp-btns { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
+        .lp-btn { background: none; border: 1px solid var(--text-main); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: var(--transition); }
+        .lp-btn:hover { background: var(--text-main); color: var(--bg-color); }
+        .lp-play-btn { width: 50px; height: 50px; background: var(--text-main); color: var(--bg-color); }
+        .lp-play-btn:hover { background: var(--point-color); border-color: var(--point-color); }
+
+        .progress-bar-wrap { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; font-family: sans-serif; }
+        .progress-bar { flex-grow: 1; -webkit-appearance: none; height: 2px; background: var(--border-color); outline: none; }
+        .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; background: var(--point-color); border-radius: 50%; cursor: pointer; }
+
+        /* =========================================
+           [프로필 (About)]
+        ========================================= */
+        .profile-container { display: flex; gap: 50px; align-items: center; background: #fdfdfc; padding: 50px; border: 1px solid var(--border-color); box-shadow: -10px 10px 0px rgba(166, 133, 226, 0.1); }
+        .profile-img { flex-shrink: 0; width: 250px; height: 350px; background: #eee; border: 1px solid var(--border-color); object-fit: cover; }
+        .profile-text h3 { font-size: 2rem; margin: 0 0 10px 0; color: var(--point-color); }
+        .profile-text p { font-size: 1rem; color: var(--text-sub); margin-bottom: 30px; line-height: 1.8; }
+        
+        .profile-meta { border-top: 1px solid var(--border-color); padding-top: 20px; }
+        .meta-row { display: flex; margin-bottom: 10px; font-size: 0.9rem; }
+        .meta-title { font-weight: 700; width: 100px; text-transform: uppercase; letter-spacing: 1px; color: var(--point-color); font-family: sans-serif; }
+        .meta-desc { color: var(--text-main); flex-grow: 1; }
+
+        footer { text-align: center; padding: 40px 0; font-size: 0.75rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; }
+
+        /* =========================================
+           [경고 모달]
+        ========================================= */
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: var(--transition); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        
-        .modal-box { background: #fff; padding: 40px; border-radius: 16px; text-align: center; max-width: 420px; }
-        .modal-box h3 { color: var(--danger-color); margin-bottom: 15px; font-size: 1.4rem; font-weight: 800; }
-        .modal-box p { color: var(--text-main); margin-bottom: 10px; font-size: 0.95rem; line-height: 1.5; }
-        .modal-box .warning-detail { color: var(--text-sub); font-size: 0.85rem; margin-bottom: 30px; background: #f9f9f9; padding: 10px; border-radius: 8px; }
-        
-        .modal-btns { display: flex; gap: 10px; justify-content: center; }
-        .btn-outline { background: transparent; color: var(--text-sub); border: 1px solid var(--border-color); }
-        .btn-outline:hover { background: #f5f5f5; color: var(--text-main); border-color: #ccc; }
+        .modal-box { background: var(--bg-color); padding: 50px; max-width: 450px; text-align: center; border: 1px solid var(--point-color); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        .modal-box h3 { color: var(--point-color); font-size: 1.5rem; margin-bottom: 15px; }
+        .modal-box p { font-size: 1rem; margin-bottom: 30px; }
+        .btn-group { display: flex; justify-content: center; gap: 15px; }
+        .btn-solid { background: var(--text-main); color: var(--bg-color); border: none; padding: 10px 20px; transition: var(--transition); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-family: sans-serif; font-weight: 700; }
+        .btn-solid:hover { background: var(--point-color); }
 
-        .lightbox-content { display: none; flex-direction: column; align-items: center; max-width: 90%; max-height: 90vh; }
-        .lightbox-content img { max-width: 100%; max-height: 75vh; border-radius: 8px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); object-fit: contain; }
-        .close-lightbox { position: absolute; top: 30px; right: 40px; color: #fff; font-size: 2.5rem; cursor: pointer; transition: color 0.2s; }
-        .close-lightbox:hover { color: var(--point-color); }
-
-        /* =========================================
-           [Music 플레이어 (100K 뱃지 포함)]
-        ========================================= */
-        .player-wrap { max-width: 600px; margin: 0 auto; border: 1px solid var(--border-color); border-radius: 16px; padding: 25px; display: flex; align-items: center; gap: 20px; background: #fff; position: relative; }
-        .album-cover { width: 100px; height: 100px; border-radius: 12px; object-fit: cover; box-shadow: var(--shadow); flex-shrink: 0; }
-        .player-info { flex-grow: 1; display: flex; flex-direction: column; gap: 10px; width: 100%; overflow: hidden; }
-        
-        .track-header { display: flex; align-items: center; gap: 10px; }
-        .track-title { font-size: 1.1rem; font-weight: 700; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .youtube-badge { background: #ff0000; color: #fff; font-size: 0.7rem; font-weight: 800; padding: 3px 8px; border-radius: 12px; display: inline-flex; align-items: center; gap: 4px; }
-        
-        .controls-row { display: flex; align-items: center; gap: 15px; }
-        .ctrl-btn { background: none; border: none; font-size: 1.2rem; color: var(--text-main); transition: color 0.2s; }
-        .ctrl-btn:hover { color: var(--point-color); }
-        .play-btn { width: 45px; height: 45px; border-radius: 50%; background: var(--point-color); color: #fff; display: flex; justify-content: center; align-items: center; font-size: 1rem; transition: var(--transition); border: none; }
-        .play-btn:hover { background: var(--point-hover); transform: scale(1.05); }
-        
-        .progress-container { display: flex; align-items: center; gap: 10px; width: 100%; }
-        .progress-bar { width: 100%; -webkit-appearance: none; height: 4px; background: var(--border-color); border-radius: 2px; outline: none; }
-        .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; border-radius: 50%; background: var(--point-color); cursor: pointer; }
-        .time-display { font-size: 0.75rem; color: var(--text-sub); min-width: 35px; }
-
-        /* =========================================
-           [About & Skills]
-        ========================================= */
-        .about-wrap { text-align: center; max-width: 700px; margin: 0 auto; }
-        .profile-icon { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 2px solid var(--point-color); padding: 5px; }
-        .skills-group { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin: 25px 0; }
-        .skill-tag { background: #f5f5f5; padding: 6px 15px; border-radius: 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-main); }
-        
-        footer { text-align: center; padding: 40px 0; color: var(--text-sub); font-size: 0.85rem; border-top: 1px solid var(--border-color); }
+        @media (max-width: 768px) {
+            .hero-title-en { font-size: 3.5rem; }
+            .hero-data-row { flex-direction: column; gap: 20px; border-top: none; padding: 0; margin-bottom: 30px; }
+            .profile-container { flex-direction: column; text-align: center; }
+            .profile-img { width: 100%; max-width: 300px; height: auto; aspect-ratio: 1/1.4; }
+            .meta-row { flex-direction: column; text-align: center; margin-bottom: 15px; }
+            .meta-title { width: 100%; margin-bottom: 5px; }
+        }
     </style>
 </head>
-<body>
+<body data-lang="ko">
 
     <header>
         <div class="container nav-inner">
             <div class="logo">Ayeon.</div>
             <nav class="nav-links">
-                <a href="#works" data-i18n="nav_works">Works</a>
-                <a href="#music" data-i18n="nav_music">Music</a>
-                <a href="#about" data-i18n="nav_about">About</a>
-                <!-- 다국어 토글 버튼 -->
+                <a href="#artworks">Artworks</a>
+                <a href="#music">Music</a>
+                <a href="#about">About</a>
+                <!-- 언어 토글 (5개 국어) -->
                 <div class="lang-group">
                     <button class="lang-btn active" data-lang="ko">KR</button>
                     <button class="lang-btn" data-lang="en">EN</button>
-                    <button class="lang-btn" data-lang="zh-cn">简</button>
-                    <button class="lang-btn" data-lang="zh-tw">繁</button>
+                    <button class="lang-btn" data-lang="jp">JP</button>
+                    <button class="lang-btn" data-lang="zh-cn">CN</button>
+                    <button class="lang-btn" data-lang="zh-tw">TW</button>
                 </div>
             </nav>
         </div>
     </header>
 
+    <!-- 완전히 프로페셔널해진 Hero 섹션 -->
     <section id="hero">
-        <div class="container">
-            <!-- 핵심 명언 -->
-            <div class="hero-quote" data-i18n="hero_quote">"재미있잖아. 나는 창작자 영혼인 것 같아."</div>
-            <h1 class="hero-title" data-i18n="hero_title">내 이야기를 늘어놓는<br>아트 & 사운드 디렉터</h1>
-            <p class="hero-subtitle" data-i18n="hero_desc">전 세계적인 밈(Meme)의 창시자이자, 10만 뷰 작곡가. 일러스트, 동인지, 그리고 음악으로 상상을 현실로 만듭니다.</p>
+        <div class="container hero-inner">
+            <div class="hero-label">Creative Archive</div>
+            <h1 class="hero-title-en">ART & SOUND<br>DIRECTOR</h1>
             
-            <div class="hero-badges">
-                <div class="badge">Twitter <span>30K+</span> Likes</div>
-                <div class="badge">YouTube <span>100K+</span> Views</div>
+            <p class="hero-subtitle" data-i18n="hero_desc">
+                시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱(A5), 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.
+            </p>
+            
+            <!-- 세련된 데이터 포인트 배치 -->
+            <div class="hero-data-row">
+                <div class="data-item">
+                    <span class="data-num">30K+</span>
+                    <span class="data-label">Twitter Likes (Meme)</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-num">100K+</span>
+                    <span class="data-label">YouTube Views</span>
+                </div>
+                <div class="data-item">
+                    <span class="data-num">2024</span>
+                    <span class="data-label">Portfolio Est.</span>
+                </div>
             </div>
 
-            <div class="hero-btns">
-                <a href="#works" class="btn" data-i18n="hero_btn_work">작품 보기</a>
-                <!-- 크레페 커미션 링크 (아연아 여기에 진짜 링크 넣어!) -->
-                <a href="https://crepe.cm/" target="_blank" class="btn btn-crepe" data-i18n="hero_btn_commission">✏️ 크레페 커미션</a>
-            </div>
+            <a href="https://crepe.cm/" target="_blank" class="btn-outline" data-i18n="btn_commission">COMMISSION INFO</a>
         </div>
     </section>
 
-    <!-- Works & Fanworks 섹션 (커플링 필터) -->
-    <section id="works">
+    <section id="artworks">
         <div class="container">
-            <h2 class="section-title" data-i18n="sec_works">Art & Fanworks</h2>
+            <h2 class="section-title">Artworks</h2>
             
-            <!-- 아연이가 요청한 커플링 분류 필터 -->
-            <div class="filter-group">
-                <button class="filter-btn active" data-filter="all">All</button>
-                <button class="filter-btn" data-filter="meme" data-i18n="filter_meme">The 30K Meme</button>
-                <button class="filter-btn" data-filter="kajishiyu" data-i18n="filter_kaji">카지시유</button>
-                <button class="filter-btn" data-filter="tuheien" data-i18n="filter_tuhei">투희엔</button>
-            </div>
+            <h3 class="subsection-title" data-i18n="title_doujin">Indie Publishing (A5)</h3>
+            <div class="catalog-grid" id="doujinGrid"></div>
 
-            <div class="grid" id="workGrid"></div>
+            <h3 class="subsection-title" data-i18n="title_illust">Visual Works</h3>
+            <div class="log-grid" id="illustGrid"></div>
         </div>
     </section>
 
-    <!-- Music 섹션 -->
     <section id="music">
         <div class="container">
-            <h2 class="section-title" data-i18n="sec_music">Music</h2>
-            <div class="player-wrap">
-                <img src="" alt="Album Cover" class="album-cover" id="albumCover">
-                
-                <div class="player-info">
-                    <div class="track-header">
-                        <div class="track-title" id="trackTitle">Loading...</div>
-                        <!-- 10만 뷰 뱃지 -->
-                        <a href="https://youtube.com" target="_blank" class="youtube-badge" id="youtubeLink" style="display: none;">
-                            ▶ 100K+
-                        </a>
+            <h2 class="section-title">Sound Production</h2>
+            <div class="lp-player-container">
+                <div class="lp-visual">
+                    <div class="lp-record" id="lpRecord">
+                        <div class="lp-label"><img src="" alt="Album Cover" id="albumCover"></div>
                     </div>
+                </div>
+                
+                <div class="lp-controls">
+                    <div class="lp-title" id="trackTitle">Loading...</div>
+                    <div class="lp-artist" id="trackArtist">Loading...</div>
                     <audio id="vocaloidAudio"></audio>
                     
-                    <div class="progress-container">
-                        <span class="time-display" id="currentTime">0:00</span>
-                        <input type="range" class="progress-bar" id="progressBar" value="0" step="1">
-                        <span class="time-display" id="durationTime">0:00</span>
+                    <div class="lp-btns">
+                        <button class="lp-btn" id="prevBtn">⏮</button>
+                        <button class="lp-btn lp-play-btn" id="playBtn">▶</button>
+                        <button class="lp-btn" id="nextBtn">⏭</button>
                     </div>
 
-                    <div class="controls-row">
-                        <button class="ctrl-btn" id="prevBtn">⏮</button>
-                        <button class="play-btn" id="playBtn">▶</button>
-                        <button class="ctrl-btn" id="nextBtn">⏭</button>
+                    <div class="progress-bar-wrap">
+                        <span id="currentTime">0:00</span>
+                        <input type="range" class="progress-bar" id="progressBar" value="0" step="1">
+                        <span id="durationTime">0:00</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About 섹션 -->
-    <section id="about" style="border-bottom: none;">
-        <div class="container about-wrap">
-            <!-- 아연이 프사 -->
-            <img src="https://via.placeholder.com/150x150/eeeeee/b39ddb?text=Ayeon" alt="Ayeon" class="profile-icon">
-            <h2 class="section-title" data-i18n="sec_about" style="margin-bottom: 10px;">Ayeon</h2>
-            <p style="color: var(--text-sub);" data-i18n="about_desc">내가 만든 걸 세상이 봐주고, 그걸 즐겨주었으면 좋겠습니다.<br>다양한 툴을 무기로 저만의 이야기를 창조합니다.</p>
-            
-            <!-- 아연이의 무기(툴) 자랑 -->
-            <div class="skills-group">
-                <div class="skill-tag">🎨 Procreate</div>
-                <div class="skill-tag">🖌️ Clip Studio</div>
-                <div class="skill-tag">🎤 Synthesizer V (Yi Xi)</div>
-                <div class="skill-tag">🤖 UTAU (자작 음원 개발중)</div>
-                <div class="skill-tag">🎛️ Ableton Live</div>
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title">Director Profile</h2>
+            <div class="profile-container">
+                <img src="https://via.placeholder.com/400x560/dcd7ce/a685e2?text=Ayeon+Portrait" alt="Ayeon Portrait" class="profile-img">
+                
+                <div class="profile-text">
+                    <h3>Ayeon</h3>
+                    <p data-i18n="about_desc">디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다. 다양한 창작 툴을 활용해 아이디어를 구체화하는 데 집중하고 있습니다.</p>
+                    
+                    <div class="profile-meta">
+                        <div class="meta-row">
+                            <div class="meta-title" data-i18n="meta_tools">Visual</div>
+                            <div class="meta-desc">Procreate, Clip Studio</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-title" data-i18n="meta_sound">Audio</div>
+                            <div class="meta-desc">Ableton Live, Synthesizer V (Yi Xi), UTAU</div>
+                        </div>
+                        <div class="meta-row">
+                            <div class="meta-title">Contact</div>
+                            <div class="meta-desc"><a href="mailto:ayeon@example.com" style="text-decoration: underline;">ayeon@example.com</a></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
 
     <footer>&copy; 2024 Ayeon. All rights reserved.</footer>
 
-    <!-- 글로벌 모달 (주의사항 & 라이트박스 공통) -->
-    <div class="modal-overlay" id="globalModal">
-        
-        <!-- 경고창 (18+ 및 근친상간, 여남박 등 TW 통합 처리) -->
-        <div class="modal-box" id="warningBox" style="display: none;">
-            <h3 data-i18n="modal_title">⚠️ Content Warning</h3>
-            <p id="modalMainText"></p>
-            <div class="warning-detail" id="modalSubText"></div>
-            
-            <div class="modal-btns">
-                <button class="btn btn-outline" id="modalNo" data-i18n="modal_no">뒤로 가기</button>
-                <button class="btn" id="modalYes" data-i18n="modal_yes">네, 확인했습니다</button>
+    <div class="modal-overlay" id="warningModal">
+        <div class="modal-box">
+            <h3 data-i18n="modal_title">⚠️ 열람 주의</h3>
+            <p id="modalMsg"></p>
+            <div class="btn-group">
+                <button class="btn-outline" id="btnDecline" data-i18n="modal_no" style="padding: 10px 20px;">돌아가기</button>
+                <button class="btn-solid" id="btnAccept" data-i18n="modal_yes">확인했습니다</button>
             </div>
-        </div>
-
-        <!-- 작품 크게 보기 (라이트박스) -->
-        <div class="lightbox-content" id="lightboxBox" style="display: none;">
-            <span class="close-lightbox" id="closeLightbox">&times;</span>
-            <img id="lightboxImg" src="" alt="Artwork Full View">
         </div>
     </div>
 
@@ -298,199 +325,135 @@
     ========================================= -->
     <script>
         /* ---------------------------------------------------
-           1. 4개 국어 번역 사전 (KR, EN, SC, TC)
+           1. 5개 국어 번역 사전 (프로페셔널 버전 텍스트)
         --------------------------------------------------- */
         const i18n = {
             ko: {
-                nav_works: 'Works', nav_music: 'Music', nav_about: 'About',
-                hero_quote: '"재미있잖아. 나는 창작자 영혼인 것 같아."',
-                hero_title: '내 이야기를 늘어놓는<br>아트 & 사운드 디렉터',
-                hero_desc: '전 세계적인 밈(Meme)의 창시자이자 10만 뷰 작곡가. 일러스트, 동인지, 그리고 음악으로 상상을 현실로 만듭니다.',
-                hero_btn_work: '작품 보기', hero_btn_commission: '✏️ 크레페 커미션',
-                sec_works: 'Art & Fanworks', sec_music: 'Music', sec_about: 'About',
-                filter_meme: '3만 맘음 밈', filter_kaji: '카지시유', filter_tuhei: '투희엔',
-                about_desc: '내가 만든 걸 세상이 봐주고, 그걸 즐겨주었으면 좋겠습니다.<br>다양한 툴을 무기로 저만의 이야기를 창조합니다.',
-                tw_label: '주의 (Click)',
-                modal_title: '⚠️ Content Warning', modal_no: '뒤로 가기', modal_yes: '네, 확인했습니다 (18세 이상)',
-                warn_18: '이 콘텐츠는 성인물(18금)을 포함하고 있습니다.',
-                warn_tw: '이 콘텐츠는 아래의 민감한 소재를 포함하고 있습니다. 열람에 주의해 주세요.'
+                hero_desc: '시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱(A5), 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.',
+                btn_commission: '커미션 안내', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
+                about_desc: '디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다. 다양한 창작 툴을 활용해 아이디어를 구체화하는 데 집중하고 있습니다.',
+                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                modal_title: '⚠️ 열람 주의', modal_no: '돌아가기', modal_yes: '확인했습니다',
+                warn_msg: '이 작품은 성인 요소(R-18) 또는 민감한 소재(%s)를 포함하고 있습니다. 열람하시겠습니까?'
             },
             en: {
-                nav_works: 'Works', nav_music: 'Music', nav_about: 'About',
-                hero_quote: '"It\'s fun. I have a creator\'s soul."',
-                hero_title: 'Art & Sound Director<br>Telling My Stories',
-                hero_desc: 'Creator of a global meme (30K+ likes) & composer with 100K+ views. Turning imagination into reality through art, doujinshi, and music.',
-                hero_btn_work: 'View Works', hero_btn_commission: '✏️ Commission Info',
-                sec_works: 'Art & Fanworks', sec_music: 'Music', sec_about: 'About',
-                filter_meme: 'The 30K Meme', filter_kaji: 'Kajishiyu', filter_tuhei: 'Tuheien',
-                about_desc: 'I want the world to see and enjoy what I create.<br>I craft my own stories using various tools as my weapons.',
-                tw_label: 'Warning (Click)',
-                modal_title: '⚠️ Content Warning', modal_no: 'Go Back', modal_yes: 'I Understand (18+)',
-                warn_18: 'This content contains adult (R-18) material.',
-                warn_tw: 'This content contains sensitive themes below. Please proceed with caution.'
+                hero_desc: 'Designing visual narratives and auditory experiences. A comprehensive creative archive spanning illustration, indie publishing (A5), and sound production.',
+                btn_commission: 'Commission Info', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
+                about_desc: 'A director who builds multi-dimensional worlds by fusing design and sound. Based on cinema and subculture grammar, I provide experiences where striking visuals meet intricate soundtracks.',
+                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                modal_title: '⚠️ Content Warning', modal_no: 'Go Back', modal_yes: 'I Understand',
+                warn_msg: 'This work contains adult (R-18) elements or sensitive material (%s). Proceed?'
+            },
+            jp: {
+                hero_desc: '視覚的な物語と聴覚的な体験を設計します。イラストレーション、インディーズ出版（A5）、そしてサウンドプロダクションを網羅する総合クリエイティブアーカイブ。',
+                btn_commission: 'コミッション案内', title_doujin: 'インディーズ出版 (A5)', title_illust: 'ビジュアルワークス',
+                about_desc: 'デザインとサウンドを融合させ、立体的な作品世界を構築するディレクターです。映画やサブカルチャーの文脈をベースに、強烈なビジュアルと精巧なサウンドトラックが結びついた体験を提供します。',
+                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '確認しました',
+                warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？'
             },
             'zh-cn': {
-                nav_works: '作品', nav_music: '音乐', nav_about: '关于我',
-                hero_quote: '"很有趣不是吗。我觉得我有着创作者的灵魂。"',
-                hero_title: '讲述自己故事的<br>艺术与声音总监',
-                hero_desc: '全球爆红迷因创作者 (3万+点赞) 兼 10万+播放量作曲家。用插画、同人志和音乐将想象化为现实。',
-                hero_btn_work: '查看作品', hero_btn_commission: '✏️ 约稿信息',
-                sec_works: 'Art & Fanworks', sec_music: 'Music', sec_about: 'About',
-                filter_meme: '3万赞迷因', filter_kaji: 'Kajishiyu', filter_tuhei: 'Tuheien',
-                about_desc: '希望世界能看到并喜欢我创造的东西。<br>以各种工具为武器，书写属于我自己的故事。',
-                tw_label: '警告 (Click)',
-                modal_title: '⚠️ 内容警告', modal_no: '返回', modal_yes: '已满18岁并确认查看',
-                warn_18: '此内容包含成人 (R-18) 元素。',
-                warn_tw: '此内容包含以下敏感题材，请谨慎阅览。'
+                hero_desc: '设计视觉叙事与听觉体验。涵盖插画、独立出版（A5）与声音制作的综合创意档案。',
+                btn_commission: '约稿信息', title_doujin: '独立出版 (A5)', title_illust: '视觉作品',
+                about_desc: '融合设计与声音，构建立体作品世界的总监。基于电影与亚文化语境，提供强烈视觉与精致配乐相结合的体验。',
+                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                modal_title: '⚠️ 内容警告', modal_no: '返回', modal_yes: '确认查看',
+                warn_msg: '此作品包含成人(R-18)元素或敏感题材(%s)。是否继续？'
             },
             'zh-tw': {
-                nav_works: '作品', nav_music: '音樂', nav_about: '關於我',
-                hero_quote: '"很有趣不是嗎。我覺得我有著創作者的靈魂。"',
-                hero_title: '講述自己故事的<br>藝術與聲音總監',
-                hero_desc: '全球爆紅迷因創作者 (3萬+按讚) 兼 10萬+播放量作曲家。用插畫、同人誌和音樂將想像化為現實。',
-                hero_btn_work: '查看作品', hero_btn_commission: '✏️ 委託資訊',
-                sec_works: 'Art & Fanworks', sec_music: 'Music', sec_about: 'About',
-                filter_meme: '3萬讚迷因', filter_kaji: 'Kajishiyu', filter_tuhei: 'Tuheien',
-                about_desc: '希望世界能看到並喜歡我創造的東西。<br>以各種工具為武器，書寫屬於我自己的故事。',
-                tw_label: '警告 (Click)',
-                modal_title: '⚠️ 內容警告', modal_no: '返回', modal_yes: '已滿18歲並確認查看',
-                warn_18: '此內容包含成人 (R-18) 元素。',
-                warn_tw: '此內容包含以下敏感題材，請謹慎閱覽。'
+                hero_desc: '設計視覺敘事與聽覺體驗。涵蓋插畫、獨立出版（A5）與聲音製作的綜合創意檔案。',
+                btn_commission: '委託資訊', title_doujin: '獨立出版 (A5)', title_illust: '視覺作品',
+                about_desc: '融合設計與聲音，構建立體作品世界的總監。基於電影與亞文化語境，提供強烈視覺與精緻配樂相結合的體驗。',
+                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                modal_title: '⚠️ 內容警告', modal_no: '返回', modal_yes: '確認查看',
+                warn_msg: '此作品包含成人(R-18)元素或敏感題材(%s)。是否繼續？'
             }
         };
 
         /* ---------------------------------------------------
-           2. 작품 데이터 (밈, 카지시유, 투희엔 & 민감소재 경고 포함)
-           - isAdult: 성인물 여부 / twText: 민감소재(Trigger Warning) 텍스트
+           2. 작품 데이터 (5개 국어 지원)
         --------------------------------------------------- */
         const worksData = [
-            { 
-                id: 1, category: 'meme', isAdult: true, twText: '', 
-                img: 'https://via.placeholder.com/600x600/f9f9f9/ff5252?text=30K+Meme+(R-18)', fullImg: 'https://via.placeholder.com/1200x1200/f9f9f9/ff5252?text=The+Legendary+Meme', 
-                title: { ko: '전설의 3만 맘음 밈', en: 'The 30K Meme', 'zh-cn': '传说的3万赞迷因', 'zh-tw': '傳說的3萬讚迷因' }
-            },
-            { 
-                id: 2, category: 'kajishiyu', isAdult: true, twText: '근친상간 (Incest) / 여남박 (Pegging)', 
-                img: 'https://via.placeholder.com/600x600/f9f9f9/ff5252?text=Kajishiyu+TW', fullImg: 'https://via.placeholder.com/1200x1200/f9f9f9/ff5252?text=Kajishiyu+Full', 
-                title: { ko: '카지시유 동인지 신간', en: 'Kajishiyu Doujinshi', 'zh-cn': 'Kajishiyu 同人志', 'zh-tw': 'Kajishiyu 同人誌' }
-            },
-            { 
-                id: 3, category: 'tuheien', isAdult: false, twText: '', 
-                img: 'https://via.placeholder.com/600x600/f9f9f9/b39ddb?text=Tuheien+Art', fullImg: 'https://via.placeholder.com/1200x1200/f9f9f9/b39ddb?text=Tuheien+Full', 
-                title: { ko: '투희엔 일러스트', en: 'Tuheien Illustration', 'zh-cn': 'Tuheien 插画', 'zh-tw': 'Tuheien 插畫' }
-            }
+            { id: 1, type: 'doujin', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x565/eee/a685e2?text=Kajishiyu+Vol.1', title: { ko: '카지시유 - 이방인', en: 'Kajishiyu - Stranger', jp: 'Kajishiyu - 異邦人', 'zh-cn': 'Kajishiyu - 异乡人', 'zh-tw': 'Kajishiyu - 異鄉人' }, desc: { ko: 'B5 / 32p / R-18', en: 'B5 / 32p / R-18', jp: 'B5 / 32p / R-18', 'zh-cn': 'B5 / 32p / R-18', 'zh-tw': 'B5 / 32p / R-18' }, tw: '근친상간, 여남박' },
+            { id: 2, type: 'doujin', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x565/eee/7a756d?text=Tuheien+Vol.1', title: { ko: '투희엔 - 기록', en: 'Tuheien - Record', jp: 'Tuheien - 記録', 'zh-cn': 'Tuheien - 记录', 'zh-tw': 'Tuheien - 紀錄' }, desc: { ko: 'B5 / 24p / All Ages', en: 'B5 / 24p / All Ages', jp: 'B5 / 24p / 全年齢', 'zh-cn': 'B5 / 24p / 全年龄', 'zh-tw': 'B5 / 24p / 全年齡' }, tw: '' },
+            { id: 3, type: 'illust', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x400/eee/a685e2?text=Log+1', tw: '' },
+            { id: 4, type: 'illust', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x400/eee/111?text=Log+2+(R-18)', tw: 'R-18' }
         ];
 
         let currentLang = 'ko';
-        let verifiedItems = new Set(); // 확인 완료된(경고 해제된) 작품 ID 저장
-        let currentFilter = 'all';
+        let verifiedItems = new Set(); 
 
-        /* ---------------------------------------------------
-           3. 렌더링 및 필터
-        --------------------------------------------------- */
         function renderWorks() {
-            const workGrid = document.getElementById('workGrid');
-            workGrid.innerHTML = '';
+            const doujinGrid = document.getElementById('doujinGrid');
+            const illustGrid = document.getElementById('illustGrid');
+            doujinGrid.innerHTML = ''; illustGrid.innerHTML = '';
 
             worksData.forEach(item => {
-                if (currentFilter !== 'all' && item.category !== currentFilter) return;
-
-                // 18금이나 TW가 있는데 아직 인증 안 한 경우 블러 처리
-                const needsWarning = (item.isAdult || item.twText) && !verifiedItems.has(item.id);
+                const needsWarning = item.tw !== '' && !verifiedItems.has(item.id);
                 
-                const cardHTML = `
-                    <div class="card ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
-                        <div class="card-img-wrap">
-                            <img src="${item.img}" alt="thumbnail">
-                            ${needsWarning ? `
-                                <div class="tw-overlay">
-                                    <div class="tw-icon">⚠️</div>
-                                    <div class="tw-text">${i18n[currentLang].tw_label}</div>
-                                </div>
-                            ` : ''}
-                        </div>
-                        <div class="card-info">
-                            <h3 class="card-title">${item.title[currentLang]}</h3>
-                        </div>
-                    </div>
-                `;
-                workGrid.insertAdjacentHTML('beforeend', cardHTML);
+                if (item.type === 'doujin') {
+                    const html = `
+                        <a href="${needsWarning ? 'javascript:void(0)' : item.link}" ${!needsWarning ? 'target="_blank"' : ''} class="catalog-card ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
+                            <div class="catalog-img-wrap">
+                                <img src="${item.img}" alt="cover">
+                                ${needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
+                            </div>
+                            <div class="catalog-info">
+                                <h3>${item.title[currentLang]}</h3>
+                                <p>${item.desc[currentLang]}</p>
+                            </div>
+                        </a>
+                    `;
+                    doujinGrid.insertAdjacentHTML('beforeend', html);
+                } else if (item.type === 'illust') {
+                    const html = `
+                        <a href="${needsWarning ? 'javascript:void(0)' : item.link}" ${!needsWarning ? 'target="_blank"' : ''} class="log-card ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
+                            <div class="log-img-wrap">
+                                <img src="${item.img}" alt="illust">
+                                ${needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
+                            </div>
+                        </a>
+                    `;
+                    illustGrid.insertAdjacentHTML('beforeend', html);
+                }
             });
-            attachCardEvents();
+            attachEvents();
         }
 
-        document.querySelectorAll('.filter-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                currentFilter = e.target.getAttribute('data-filter');
-                renderWorks();
-            });
-        });
+        const warningModal = document.getElementById('warningModal');
+        let pendingItem = null;
 
-        /* ---------------------------------------------------
-           4. 경고 모달 & 라이트박스 로직
-        --------------------------------------------------- */
-        const globalModal = document.getElementById('globalModal');
-        const warningBox = document.getElementById('warningBox');
-        const lightboxBox = document.getElementById('lightboxBox');
-        let pendingWorkId = null;
-
-        function attachCardEvents() {
-            document.querySelectorAll('.card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const id = parseInt(this.getAttribute('data-id'));
-                    const work = worksData.find(w => w.id === id);
-                    const needsWarning = (work.isAdult || work.twText) && !verifiedItems.has(id);
-
-                    if (needsWarning) {
-                        pendingWorkId = id;
-                        // 모달 텍스트 세팅
-                        document.getElementById('modalMainText').innerText = work.isAdult ? i18n[currentLang].warn_18 : i18n[currentLang].warn_tw;
-                        document.getElementById('modalSubText').innerText = work.twText ? `[ 소재: ${work.twText} ]` : '';
-                        
-                        warningBox.style.display = 'block';
-                        lightboxBox.style.display = 'none';
-                        globalModal.classList.add('active');
-                    } else {
-                        openLightbox(work);
-                    }
+        function attachEvents() {
+            document.querySelectorAll('.tw-locked').forEach(el => {
+                el.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const id = parseInt(el.getAttribute('data-id'));
+                    pendingItem = worksData.find(w => w.id === id);
+                    
+                    const msg = i18n[currentLang].warn_msg.replace('%s', pendingItem.tw);
+                    document.getElementById('modalMsg').innerText = msg;
+                    warningModal.classList.add('active');
                 });
             });
         }
 
-        document.getElementById('modalNo').addEventListener('click', () => {
-            globalModal.classList.remove('active');
-            pendingWorkId = null;
-        });
-
-        document.getElementById('modalYes').addEventListener('click', () => {
-            if(pendingWorkId) {
-                verifiedItems.add(pendingWorkId); // 이 작품은 인증 완료!
-                renderWorks(); // 블러 해제
-                const work = worksData.find(w => w.id === pendingWorkId);
-                openLightbox(work);
+        document.getElementById('btnDecline').addEventListener('click', () => warningModal.classList.remove('active'));
+        document.getElementById('btnAccept').addEventListener('click', () => {
+            if (pendingItem) {
+                verifiedItems.add(pendingItem.id);
+                warningModal.classList.remove('active');
+                renderWorks();
+                window.open(pendingItem.link, '_blank');
             }
         });
 
-        function openLightbox(work) {
-            warningBox.style.display = 'none';
-            lightboxBox.style.display = 'flex';
-            globalModal.classList.add('active');
-            document.getElementById('lightboxImg').src = work.fullImg;
-        }
-
-        document.getElementById('closeLightbox').addEventListener('click', () => globalModal.classList.remove('active'));
-        globalModal.addEventListener('click', (e) => { if(e.target === globalModal) globalModal.classList.remove('active'); });
-
-        /* ---------------------------------------------------
-           5. 다국어 전환 로직 (4개 국어)
-        --------------------------------------------------- */
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
                 currentLang = e.target.getAttribute('data-lang');
+                
+                document.body.setAttribute('data-lang', currentLang);
                 
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
@@ -501,53 +464,28 @@
             });
         });
 
-        /* ---------------------------------------------------
-           6. 음악 플레이어 (10만 뷰 뱃지 + UTAU/SynV)
-        --------------------------------------------------- */
         const playlist = [
-            // 10만 뷰 곡 (youtubeLink 속성 추가)
-            { 
-                title: { ko: "Vocaloid - 별의 조각 (100K+)", en: "Vocaloid - Star Fragment", 'zh-cn': "星之碎片", 'zh-tw': "星之碎片" }, 
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", 
-                cover: "https://via.placeholder.com/150x150/f5f5f5/ff5252?text=100K+Hit",
-                youtubeLink: "https://youtube.com/watch?v=YOUR_VIDEO_ID" // 진짜 링크로 바꿔!
-            },
-            // 일반 곡
-            { 
-                title: { ko: "Synthesizer V Yi Xi - 달빛 바다", en: "SynV Yi Xi - Moonlit Sea", 'zh-cn': "SynV Yi Xi - 月光之海", 'zh-tw': "SynV Yi Xi - 月光之海" }, 
-                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3", 
-                cover: "https://via.placeholder.com/150x150/f5f5f5/b39ddb?text=Yi+Xi"
-            }
+            { title: { ko: "별의 조각", en: "Star Fragment", jp: "星の欠片", 'zh-cn': "星之碎片", 'zh-tw': "星之碎片" }, artist: "Ayeon (Synthesizer V Yi Xi)", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", cover: "https://via.placeholder.com/150/a685e2/fff?text=Ayeon" }
         ];
 
         let songIndex = 0;
         const audio = document.getElementById('vocaloidAudio');
+        const lpRecord = document.getElementById('lpRecord');
         const playBtn = document.getElementById('playBtn');
-        const youtubeBadge = document.getElementById('youtubeLink');
 
         function loadSong() {
             const song = playlist[songIndex];
             document.getElementById('trackTitle').innerText = song.title[currentLang];
+            document.getElementById('trackArtist').innerText = song.artist;
             document.getElementById('albumCover').src = song.cover;
-            
-            // 유튜브 뱃지 표시 여부
-            if(song.youtubeLink) {
-                youtubeBadge.style.display = 'inline-flex';
-                youtubeBadge.href = song.youtubeLink;
-            } else {
-                youtubeBadge.style.display = 'none';
-            }
-
             if (!audio.src.includes(song.src)) audio.src = song.src;
         }
 
-        function playSong() { audio.play(); playBtn.innerText = '⏸'; }
-        function pauseSong() { audio.pause(); playBtn.innerText = '▶'; }
+        function playSong() { audio.play(); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
+        function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
 
         playBtn.addEventListener('click', () => audio.paused ? playSong() : pauseSong());
-        document.getElementById('prevBtn').addEventListener('click', () => { songIndex = (songIndex - 1 + playlist.length) % playlist.length; loadSong(); playSong(); });
-        document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(); playSong(); });
-        audio.addEventListener('ended', () => document.getElementById('nextBtn').click());
+        audio.addEventListener('ended', () => { pauseSong(); document.getElementById('nextBtn').click(); });
 
         const progressBar = document.getElementById('progressBar');
         function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.floor(sec % 60); return `${m}:${s < 10 ? '0' : ''}${s}`; }
@@ -555,9 +493,8 @@
         audio.addEventListener('timeupdate', () => { progressBar.value = Math.floor(audio.currentTime); document.getElementById('currentTime').innerText = formatTime(audio.currentTime); });
         progressBar.addEventListener('input', () => audio.currentTime = progressBar.value);
 
-        /* --- 초기화 --- */
-        document.querySelector('[data-lang="ko"]').click(); // 한국어로 최초 세팅
-
+        /* 초기화 */
+        renderWorks(); loadSong();
     </script>
 </body>
 </html>
