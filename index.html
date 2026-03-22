@@ -177,6 +177,21 @@
         .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-sub); transition: 0.2s; }
         .close-modal:hover { color: var(--point-color); }
 
+        .sns-links { display: flex; flex-wrap: wrap; gap: 10px 15px; }
+        .sns-links a { 
+            font-size: 0.85rem; 
+            font-weight: 700; 
+            color: var(--text-main); 
+            text-decoration: none; 
+            border-bottom: 1px solid var(--border-color);
+            transition: var(--transition);
+        }
+        .sns-links a:hover { 
+            color: var(--point-color); 
+            border-color: var(--point-color);
+            transform: translateY(-2px);
+        }
+
         /* 2. 동인지 상세 정보 모달 */
         .detail-box { max-width: 700px; width: 90%; text-align: left; padding: 40px; display: flex; gap: 30px; align-items: flex-start; }
         .detail-cover { width: 250px; flex-shrink: 0; border: 1px solid var(--border-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
@@ -266,8 +281,16 @@
     <section id="artworks">
         <div class="container">
             <h2 class="section-title">Artworks</h2>
+            <section id="artworks">
+        <div class="container">
+            <h2 class="section-title">Artworks</h2>
             
-            <h3 class="subsection-title" data-i18n="title_doujin">Indie Publishing (A5)</h3>
+            <!-- 🚨 저작권 고지 문구 (세련된 작은 글씨) -->
+            <p data-i18n="copyright_notice" style="text-align: center; font-size: 0.8rem; color: var(--text-sub); margin-top: -30px; margin-bottom: 50px; font-style: italic; opacity: 0.8;">
+                본 아카이브의 2차 창작물에 대한 저작권은 각 원저작자에게 있으며, 비영리 목적으로만 전시됩니다.
+            </p>
+            
+            <h3 class="subsection-title" data-i18n="title_doujin">Doujin</h3>
             <div class="catalog-grid" id="doujinGrid"></div>
 
             <h3 class="subsection-title" data-i18n="title_illust">Visual Works</h3>
@@ -336,6 +359,16 @@
                     <div class="profile-meta">
                         <div class="meta-row"><div class="meta-title" data-i18n="meta_tools">Visual</div><div class="meta-desc">Procreate, Clip Studio</div></div>
                         <div class="meta-row"><div class="meta-title" data-i18n="meta_sound">Audio</div><div class="meta-desc">Ableton Live, Synthesizer V (Yi Xi), UTAU</div></div>
+                        <div class="meta-row" style="margin-top: 20px;">
+                            <div class="meta-title">Social</div>
+                            <div class="meta-desc sns-links">
+                                <a href="https://x.com/friendlysh0p" target="_blank" title="Twitter (X)">Twitter</a>
+                                <a href="https://www.pixiv.net/users/105042684" target="_blank" title="Pixiv">Pixiv</a>
+                                <a href="https://youtube.com/@zinczinczinc" target="_blank" title="YouTube">YouTube</a>
+                                <a href="https://space.bilibili.com/3546582653864046" target="_blank" title="Bilibili">Bilibili</a>
+                                <a href="https://xhslink.com/m/51YHc8bjhVi" target="_blank" title="rednote">Xiaohongshu</a>
+                            </div>
+                        </div>
                         <div class="meta-row"><div class="meta-title">Contact</div><div class="meta-desc"><a href="mailto:ayeon@example.com">zinkist01@gmail.com</a></div></div>
                     </div>
                     
@@ -404,7 +437,9 @@
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 열람 주의', modal_no: '돌아가기', modal_yes: '확인했습니다',
                 warn_msg: '이 작품은 성인 요소(R-18) 또는 민감한 소재(%s)를 포함하고 있습니다. 열람하시겠습니까?',
-                btn_pixiv: 'Pixiv에서 보기', warning_prefix: '주의 소재:'
+                btn_pixiv: 'Pixiv에서 보기', warning_prefix: '소재 주의:',
+                copyright_notice: '본 아카이브의 2차 창작물에 대한 저작권은 각 원저작자에게 있으며, 비영리 목적으로만 전시됩니다.',
+                sns_title: 'Connect with 鉛'
             },
             en: {
                 nav_schedule: 'Schedule', hero_desc: 'I make what I want to make', btn_commission: 'Commission Info',
@@ -413,7 +448,9 @@
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ Content Warning', modal_no: 'Go Back', modal_yes: 'I Understand',
                 warn_msg: 'This work contains adult (R-18) elements or sensitive themes (%s). Proceed?',
-                btn_pixiv: 'View on Pixiv', warning_prefix: 'TW:'
+                btn_pixiv: 'View on Pixiv', warning_prefix: 'TW:',
+                copyright_notice: 'All derivative works in this archive belong to their respective original creators and are exhibited for non-profit purposes only.',
+                sns_title: 'Connect with 鉛'
             },
             jp: {
                 nav_schedule: 'Schedule', hero_desc: '作りたいものを作ります', btn_commission: 'コミッション案内',
@@ -422,7 +459,9 @@
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '確認しました',
                 warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？',
-                btn_pixiv: 'Pixivで見る', warning_prefix: '注意要素:'
+                btn_pixiv: 'Pixivで見る', warning_prefix: '注意:',
+                copyright_notice: '本アーカイブの二次創作物の著作権は各原作者に帰属し、非営利目的でのみ展示されています。',
+                sns_title: 'Connect with 鉛'
             },
             'zh-cn': {
                 nav_schedule: '日程安排', hero_desc: '制作自己想做的东西。', btn_commission: '约稿信息',
@@ -431,7 +470,9 @@
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 内容警告', modal_no: '返回', modal_yes: '确认查看',
                 warn_msg: '此作品包含成人(R-18)元素或敏感题材(%s)。是否继续？',
-                btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意要素:'
+                btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意:',
+                copyright_notice: '本归档中的二次创作作品版权归各原作者所有，仅用于非营利性展示。',
+                sns_title: 'Connect with 鉛'
             },
             'zh-tw': {
                 nav_schedule: '日程安排', hero_desc: '製作自己想做的東西。', btn_commission: '委託資訊',
@@ -440,7 +481,9 @@
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 內容警告', modal_no: '返回', modal_yes: '確認查看',
                 warn_msg: '此作品包含成人(R-18)元素或敏感題材(%s)。是否繼續？',
-                btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意要素:'
+                btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意:',
+                copyright_notice: '本歸檔中的二次創作作品版權歸各原作者所有，僅用於非營利性展示。',
+                sns_title: 'Connect with 鉛'
             }
         };
 
@@ -502,22 +545,93 @@
             { id: 10, type: 'illust', tw: { ko: '여남박, 컨트보이', en: 'Top female, cuntboy', jp: '女攻め,カントボーイ', 'zh-cn': 'gb', 'zh-tw': 'gb' }, img: './136113680_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/136113680' }
         ];
 
+        
+        /* 🎵 [음악 데이터] 투고 순서대로(아래로 갈수록 최신곡이면 위아래 순서를 바꿔도 돼!) */
         const playlist = [
             { 
                 title: { ko: "상큼한 오렌지", en: "Refreshing Orange", jp: "爽やかオレンジ", 'zh-cn': "清爽的橙子", 'zh-tw': "清爽的橙子" }, 
                 artist: "鉛 (feat. Yi Xi)", 
-                src: "./さわやか4.mp3", 
-                cover: "./109951172185220070.jpg",
-                desc: { 
-                    ko: "기독교적 모티브를 담은 오렌지에 관한 곡", 
-                    en: "A song about an orange with a Christian motif", 
-                    jp: "キリスト教的なモチーフを取り入れたオレンジに関する曲", 
-                    'zh-cn': "包含基督教主题的橙色歌曲", 
-                    'zh-tw': "包含基督教主題的橙色歌曲" 
-                },
-                youtubeId: "d6qGy3Hk3cQ" // 유튜브 주소의 v= 뒷부분
+                src: "./song1.mp3", 
+                cover: "./album1.jpg",
+                desc: { ko: "여름의 청량함을 담은 Yi Xi의 보컬이 돋보이는 곡입니다.", en: "A refreshing summer song featuring the clear vocals of Yi Xi.", jp: "夏の清涼感を込めた Yi Xi のボーカルが際立つ一曲です。", 'zh-cn': "一首充满夏天清凉感、凸显 Yi Xi 歌声的歌曲。", 'zh-tw': "一首充滿夏天清涼感、凸顯 Yi Xi 歌聲的歌曲。" },
+                youtubeId: "d6qGy3Hk3cQ"
             }
         ];
+
+        let songIndex = 0;
+        const audio = document.getElementById('vocaloidAudio');
+        const lpRecord = document.getElementById('lpRecord');
+        const playBtn = document.getElementById('playBtn');
+        const watchMvBtn = document.getElementById('watchMvBtn');
+        const mvModal = document.getElementById('mvModal');
+        const mvContainer = document.getElementById('mvContainer');
+
+        /* 플레이리스트 리스트 렌더링 함수 */
+        function renderPlaylist() {
+            const listEl = document.getElementById('playlistList');
+            if(!listEl) return;
+            listEl.innerHTML = '';
+
+            playlist.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = `playlist-item ${index === songIndex ? 'active' : ''}`;
+                item.innerHTML = `
+                    <span class="track-num">${String(index + 1).padStart(2, '0')}</span>
+                    <div class="track-info-mini">
+                        <span class="track-name-mini">${song.title[currentLang]}</span>
+                        <span class="track-artist-mini">${song.artist}</span>
+                    </div>
+                `;
+                item.onclick = () => {
+                    songIndex = index;
+                    loadSong();
+                    playSong();
+                };
+                listEl.appendChild(item);
+            });
+        }
+
+        function loadSong() {
+            const song = playlist[songIndex];
+            if(!song) return;
+
+            document.getElementById('trackTitle').innerText = song.title[currentLang];
+            document.getElementById('trackArtist').innerText = song.artist;
+            document.getElementById('trackDesc').innerText = song.desc[currentLang];
+            document.getElementById('albumCover').src = song.cover;
+            
+            // MV 버튼 노출 여부
+            if (song.youtubeId) {
+                watchMvBtn.style.display = 'flex';
+                watchMvBtn.onclick = () => {
+                    pauseSong();
+                    mvContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${song.youtubeId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    mvModal.classList.add('active');
+                };
+            } else {
+                watchMvBtn.style.display = 'none';
+            }
+
+            // 오디오 소스 설정 (안전하게)
+            if (song.src && !audio.src.includes(song.src)) {
+                audio.src = song.src;
+                audio.load();
+            }
+            
+            renderPlaylist(); // 리스트의 활성화(active) 상태 업데이트
+        }
+
+        // 재생/일시정지, 다음/이전 곡 로직 (기존과 동일하지만 renderPlaylist 호출 포함됨)
+        function playSong() { audio.play().catch(()=>{}); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
+        function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
+
+        playBtn.addEventListener('click', () => audio.paused ? playSong() : pauseSong());
+        document.getElementById('prevBtn').addEventListener('click', () => { songIndex = (songIndex - 1 + playlist.length) % playlist.length; loadSong(); playSong(); });
+        document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(); playSong(); });
+        audio.addEventListener('ended', () => document.getElementById('nextBtn').click());
+
+        /* 초기화 실행 부분에 추가 */
+        renderPlaylist(); loadSong();
 
         let currentLang = 'ko';
         let verifiedItems = new Set(); 
