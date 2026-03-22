@@ -281,9 +281,6 @@
     <section id="artworks">
         <div class="container">
             <h2 class="section-title">Artworks</h2>
-            <section id="artworks">
-        <div class="container">
-            <h2 class="section-title">Artworks</h2>
             
             <!-- 🚨 저작권 고지 문구 (세련된 작은 글씨) -->
             <p data-i18n="copyright_notice" style="text-align: center; font-size: 0.8rem; color: var(--text-sub); margin-top: -30px; margin-bottom: 50px; font-style: italic; opacity: 0.8;">
@@ -353,7 +350,7 @@
                 <img src="./unnamed.jpg" onerror="this.src='https://via.placeholder.com/400x400/dcd7ce/a685e2?text=Ayeon'" alt="Ayeon Portrait" class="profile-img">
                 
                 <div class="profile-text">
-                    <h3>Ayeon</h3>
+                    <h3>鉛</h3>
                     <p data-i18n="about_desc">창작하는 것을 좋아합니다.</p>
                     
                     <div class="profile-meta">
@@ -429,6 +426,16 @@
          [JavaScript 로직 & 데이터]
     ========================================= -->
     <script>
+        /* =========================================
+           1. 글로벌 상태 관리
+        ========================================= */
+        let currentLang = 'ko';
+        let verifiedItems = new Set(); 
+        let songIndex = 0;
+
+        /* =========================================
+           2. 다국어 사전 (5개 국어)
+        ========================================= */
         const i18n = {
             ko: {
                 nav_schedule: 'Schedule', hero_desc: '만들고 싶은 것을 만듭니다', btn_commission: '커미션 안내',
@@ -438,8 +445,7 @@
                 modal_title: '⚠️ 열람 주의', modal_no: '돌아가기', modal_yes: '확인했습니다',
                 warn_msg: '이 작품은 성인 요소(R-18) 또는 민감한 소재(%s)를 포함하고 있습니다. 열람하시겠습니까?',
                 btn_pixiv: 'Pixiv에서 보기', warning_prefix: '소재 주의:',
-                copyright_notice: '본 아카이브의 2차 창작물에 대한 저작권은 각 원저작자에게 있으며, 비영리 목적으로만 전시됩니다.',
-                sns_title: 'Connect with 鉛'
+                copyright_notice: '본 아카이브의 2차 창작물에 대한 저작권은 각 원저작자에게 있으며, 비영리 목적으로만 전시됩니다.'
             },
             en: {
                 nav_schedule: 'Schedule', hero_desc: 'I make what I want to make', btn_commission: 'Commission Info',
@@ -449,19 +455,17 @@
                 modal_title: '⚠️ Content Warning', modal_no: 'Go Back', modal_yes: 'I Understand',
                 warn_msg: 'This work contains adult (R-18) elements or sensitive themes (%s). Proceed?',
                 btn_pixiv: 'View on Pixiv', warning_prefix: 'TW:',
-                copyright_notice: 'All derivative works in this archive belong to their respective original creators and are exhibited for non-profit purposes only.',
-                sns_title: 'Connect with 鉛'
+                copyright_notice: 'All derivative works in this archive belong to their respective original creators and are exhibited for non-profit purposes only.'
             },
             jp: {
                 nav_schedule: 'Schedule', hero_desc: '作りたいものを作ります', btn_commission: 'コミッション案内',
-                sec_schedule: 'Event Schedule', title_doujin: '同人誌', title_illust: 'ビジュアルワークス',
+                sec_schedule: 'Event Schedule', title_doujin: '同人誌', title_illust: 'ビジュアルワーク스',
                 about_desc: '創作することが大好きです。',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '確認しました',
                 warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？',
                 btn_pixiv: 'Pixivで見る', warning_prefix: '注意:',
-                copyright_notice: '本アーカイブの二次創作物の著作権は各原作者に帰属し、非営利目的でのみ展示されています。',
-                sns_title: 'Connect with 鉛'
+                copyright_notice: '本アーカイブの二次創作物の著作権は各原作者に帰属し、非営利目的でのみ展示されています。'
             },
             'zh-cn': {
                 nav_schedule: '日程安排', hero_desc: '制作自己想做的东西。', btn_commission: '约稿信息',
@@ -471,22 +475,23 @@
                 modal_title: '⚠️ 内容警告', modal_no: '返回', modal_yes: '确认查看',
                 warn_msg: '此作品包含成人(R-18)元素或敏感题材(%s)。是否继续？',
                 btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意:',
-                copyright_notice: '本归档中的二次创作作品版权归各原作者所有，仅用于非营利性展示。',
-                sns_title: 'Connect with 鉛'
+                copyright_notice: '本归档中的二次创作作品版权归各原作者所有，仅用于非营利性展示。'
             },
             'zh-tw': {
                 nav_schedule: '日程安排', hero_desc: '製作自己想做的東西。', btn_commission: '委託資訊',
                 sec_schedule: '活動日程', title_doujin: '同人誌', title_illust: '視覺作品',
-                about_desc: '熱愛創作。',
+                about_desc: '熱愛創作.',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 內容警告', modal_no: '返回', modal_yes: '確認查看',
                 warn_msg: '此作品包含成人(R-18)元素或敏感題材(%s)。是否繼續？',
                 btn_pixiv: '在 Pixiv 查看', warning_prefix: '注意:',
-                copyright_notice: '本歸檔中的二次創作作品版權歸各原作者所有，僅用於非營利性展示。',
-                sns_title: 'Connect with 鉛'
+                copyright_notice: '本歸檔中的二次創作作品版權歸各原作者所有，僅用於非營利性展示。'
             }
         };
 
+        /* =========================================
+           3. 데이터 설정 (일정, 작품, 플레이리스트)
+        ========================================= */
         const scheduleData = [
             { date: '2026.04.26', name: { ko: '오락관', en: 'O-Rak-Gwan', jp: '娯楽館', 'zh-cn': '娱乐馆', 'zh-tw': '娛樂館' }, booth: 'Korea' },
             { date: '2026.08.22', name: { ko: '쾌청주의보', en: 'Clear Sky Warning', jp: '快晴注意報', 'zh-cn': '快晴注意报', 'zh-tw': '快晴注意報' }, booth: 'Korea' },
@@ -496,45 +501,24 @@
         const worksData = [
             { 
                 id: 1, type: 'doujin', tw: { ko: '근친상간', en: 'Incest', jp: '近親相姦', 'zh-cn': '骨科', 'zh-tw': '骨科' }, 
-                img: './142444971_p0_master1200.jpg', 
-                link: 'https://www.pixiv.net/artworks/142444971', 
+                img: './142444971_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/142444971', 
                 title: { ko: '카지시유 - SIBILINGS IN BED', en: 'Kieran x Carmine - SIBILINGS IN BED', jp: 'スグゼイ - SIBILINGS IN BED', 'zh-cn': '乌栗丹瑜 - SIBILINGS IN BED', 'zh-tw': '烏栗丹瑜 - SIBILINGS IN BED' }, 
-                spec: '7/20　COMIC WORLD SUMMER 2025 R15/A5/12p',
-                desc: { 
-                    ko: '예약 실수로 침대를 같이 쓰게 된 남매의 이야기.', 
-                    en: 'A story of siblings who end up sharing a bed due to a reservation error.', 
-                    jp: '予約ミスでベッドを共にすることになった姉弟の物語。',
-                    'zh-cn': '由于预约失误而不得不共用一张床的姐弟俩的故事。',
-                    'zh-tw': '由於預約失誤而不得不共用一張床的姐弟倆的故事。'
-                }
+                spec: '7/20 COMIC WORLD SUMMER 2025 R15/A5/12p',
+                desc: { ko: '예약 실수로 침대를 같이 쓰게 된 남매의 이야기.', en: 'Siblings sharing a bed due to a reservation error.', jp: '予約ミスでベッドを共にすることになった姉弟の物語。', 'zh-cn': '由于预约失误而共用一张床的姐弟的故事。', 'zh-tw': '由於預約失誤而不得不共用一張床의 姐弟的故事。' }
             },
             { 
                 id: 2, type: 'doujin', tw: { ko: '근친상간', en: 'Incest', jp: '近親相姦', 'zh-cn': '骨科', 'zh-tw': '骨科' }, 
-                img: './142481386_p0_master1200.jpg', 
-                link: 'https://www.pixiv.net/artworks/142481386', 
-                title: { ko: '카지시유 - 누나의 유혹', en: 'Kieran x Carmine - Lure of Sister', jp: 'スグゼイ - 姉の誘惑', 'zh-cn': '乌栗丹瑜 - 姐姐的诱惑', 'zh-tw': '烏栗丹瑜 - 姐姐的誘惑' }, 
-                spec: '3/20　HARU COMIC CITY 35 R18/A5/24p',
-                desc: { 
-                    ko: '번외편 후 시점, 실패한 첫날밤을 만회하기 위해 시유를 유혹하는 카지의 이야기.', 
-                    en: 'Post-epilogue story: Kieran tries to seduce Carmine to make up for their failed first night.', 
-                    jp: '番外編後の時点、失敗した初夜を挽回するためにゼイユを誘惑するスグリの物語。',
-                    'zh-cn': '番外篇之后，乌栗为了弥补失败的初夜而诱惑丹瑜的故事。',
-                    'zh-tw': '番外篇之後，烏栗為了彌補失敗的初夜而誘惑丹瑜的故事。'
-                }
+                img: './142481386_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/142481386', 
+                title: { ko: '카지시유 - 누나의 유혹', en: 'Kieran x Carmine - Lure of Sister', jp: 'スグゼイ - 姉의 誘惑', 'zh-cn': '乌栗丹瑜 - 姐姐的诱惑', 'zh-tw': '烏栗丹瑜 - 姐姐의 誘惑' }, 
+                spec: '3/20 HARU COMIC CITY 35 R18/A5/24p',
+                desc: { ko: '실패한 첫날밤을 만회하기 위해 카지를 유혹하는 시유의 이야기.', en: 'Carmine tries to seduce Kieran to make up for their failed first night.', jp: '失敗した初夜를 挽回するためにスグリを誘惑するゼイユの本。', 'zh-cn': '丹瑜为了弥补失败的初夜而诱惑乌栗的故事。', 'zh-tw': '丹瑜為了彌補失敗的初夜而誘惑烏栗的故事。' }
             },
             { 
                 id: 3, type: 'doujin', tw: { ko: '여남박, 컨트보이', en: 'Top female, cuntboy', jp: '女攻め,カントボーイ', 'zh-cn': 'gb', 'zh-tw': 'gb' }, 
-                img: './cover3.jpg',  
-                link: 'https://pixiv.net', // <- 링크 추가함!
+                img: './cover3.jpg', link: 'https://pixiv.net', 
                 title: { ko: '투희엔 - 예정', en: 'Hilda x N - Planned', jp: 'トコN - 予定', 'zh-cn': '主♀N - 计划中', 'zh-tw': '主♀N - 計劃中' }, 
                 spec: '8월 쾌청주의보 발매 예정',
-                desc: { 
-                    ko: '트위터에 올린 투희엔 만화의 재록본입니다.', 
-                    en: 'A collection of Hilda x N comics previously posted on Twitter.', 
-                    jp: 'Twitterに投稿したトコN漫畵の再錄本です.',
-                    'zh-cn': '在Twitter上发布的主♀N漫画的再录本。',
-                    'zh-tw': '在Twitter上發佈的主♀N漫畫的再錄本。'
-                }
+                desc: { ko: '트위터에 올린 투희엔 만화의 재록본입니다.', en: 'Reprint of Hilda x N comics from Twitter.', jp: 'Twitterに投稿したトコN漫画の再録本です。', 'zh-cn': '在 Twitter 上发布的 主♀N 漫画再录。', 'zh-tw': '在 Twitter 上發佈의 主♀N 漫畫再錄。' }
             },
             { id: 4, type: 'illust', tw: '', img: './118748766_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118748766' },
             { id: 5, type: 'illust', tw: '', img: './118754068_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/118754068' },
@@ -545,99 +529,31 @@
             { id: 10, type: 'illust', tw: { ko: '여남박, 컨트보이', en: 'Top female, cuntboy', jp: '女攻め,カントボーイ', 'zh-cn': 'gb', 'zh-tw': 'gb' }, img: './136113680_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/136113680' }
         ];
 
-        
-        /* 🎵 [음악 데이터] 투고 순서대로(아래로 갈수록 최신곡이면 위아래 순서를 바꿔도 돼!) */
         const playlist = [
             { 
                 title: { ko: "상큼한 오렌지", en: "Refreshing Orange", jp: "爽やかオレンジ", 'zh-cn': "清爽的橙子", 'zh-tw': "清爽的橙子" }, 
-                artist: "鉛 (feat. Yi Xi)", 
-                src: "./song1.mp3", 
-                cover: "./album1.jpg",
-                desc: { ko: "여름의 청량함을 담은 Yi Xi의 보컬이 돋보이는 곡입니다.", en: "A refreshing summer song featuring the clear vocals of Yi Xi.", jp: "夏の清涼感を込めた Yi Xi のボーカルが際立つ一曲です。", 'zh-cn': "一首充满夏天清凉感、凸显 Yi Xi 歌声的歌曲。", 'zh-tw': "一首充滿夏天清涼感、凸顯 Yi Xi 歌聲的歌曲。" },
+                artist: "鉛 (feat. Yi Xi)", src: "./さわやか4.mp3", cover: "./109951172185220070.jpg",
+                desc: { ko: "기독교적 모티브로 풀어내는 오렌지에 대한 노래", en: "A song about an orange with a Christian motif.", jp: "キリスト教的なモチーフで表現されたオレンジに関する歌。", 'zh-cn': "一首以基督教为主题的橙色歌曲.。", 'zh-tw': "一首以基督教爲主題的橙色歌曲。" },
                 youtubeId: "d6qGy3Hk3cQ"
             }
         ];
 
-        let songIndex = 0;
+        /* =========================================
+           4. 핵심 기능 함수 (렌더링, 언어 전환 등)
+        ========================================= */
         const audio = document.getElementById('vocaloidAudio');
         const lpRecord = document.getElementById('lpRecord');
         const playBtn = document.getElementById('playBtn');
         const watchMvBtn = document.getElementById('watchMvBtn');
         const mvModal = document.getElementById('mvModal');
         const mvContainer = document.getElementById('mvContainer');
-
-        /* 플레이리스트 리스트 렌더링 함수 */
-        function renderPlaylist() {
-            const listEl = document.getElementById('playlistList');
-            if(!listEl) return;
-            listEl.innerHTML = '';
-
-            playlist.forEach((song, index) => {
-                const item = document.createElement('div');
-                item.className = `playlist-item ${index === songIndex ? 'active' : ''}`;
-                item.innerHTML = `
-                    <span class="track-num">${String(index + 1).padStart(2, '0')}</span>
-                    <div class="track-info-mini">
-                        <span class="track-name-mini">${song.title[currentLang]}</span>
-                        <span class="track-artist-mini">${song.artist}</span>
-                    </div>
-                `;
-                item.onclick = () => {
-                    songIndex = index;
-                    loadSong();
-                    playSong();
-                };
-                listEl.appendChild(item);
-            });
-        }
-
-        function loadSong() {
-            const song = playlist[songIndex];
-            if(!song) return;
-
-            document.getElementById('trackTitle').innerText = song.title[currentLang];
-            document.getElementById('trackArtist').innerText = song.artist;
-            document.getElementById('trackDesc').innerText = song.desc[currentLang];
-            document.getElementById('albumCover').src = song.cover;
-            
-            // MV 버튼 노출 여부
-            if (song.youtubeId) {
-                watchMvBtn.style.display = 'flex';
-                watchMvBtn.onclick = () => {
-                    pauseSong();
-                    mvContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${song.youtubeId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
-                    mvModal.classList.add('active');
-                };
-            } else {
-                watchMvBtn.style.display = 'none';
-            }
-
-            // 오디오 소스 설정 (안전하게)
-            if (song.src && !audio.src.includes(song.src)) {
-                audio.src = song.src;
-                audio.load();
-            }
-            
-            renderPlaylist(); // 리스트의 활성화(active) 상태 업데이트
-        }
-
-        // 재생/일시정지, 다음/이전 곡 로직 (기존과 동일하지만 renderPlaylist 호출 포함됨)
-        function playSong() { audio.play().catch(()=>{}); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
-        function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
-
-        playBtn.addEventListener('click', () => audio.paused ? playSong() : pauseSong());
-        document.getElementById('prevBtn').addEventListener('click', () => { songIndex = (songIndex - 1 + playlist.length) % playlist.length; loadSong(); playSong(); });
-        document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(); playSong(); });
-        audio.addEventListener('ended', () => document.getElementById('nextBtn').click());
-
-        /* 초기화 실행 부분에 추가 */
-        renderPlaylist(); loadSong();
-
-        let currentLang = 'ko';
-        let verifiedItems = new Set(); 
+        const warningModal = document.getElementById('warningModal');
+        const detailModal = document.getElementById('detailModal');
+        let pendingItem = null;
 
         function renderSchedule() {
             const list = document.getElementById('scheduleList');
+            if(!list) return;
             list.innerHTML = '';
             scheduleData.forEach(item => {
                 list.insertAdjacentHTML('beforeend', `
@@ -653,12 +569,11 @@
         function renderWorks() {
             const doujinGrid = document.getElementById('doujinGrid');
             const illustGrid = document.getElementById('illustGrid');
-            if(!doujinGrid || !illustGrid) return; // 에러 방지
+            if(!doujinGrid || !illustGrid) return;
 
             doujinGrid.innerHTML = ''; illustGrid.innerHTML = '';
 
             worksData.forEach(item => {
-                // TW 다국어 처리 로직 추가
                 const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
                 const needsWarning = twValue !== '' && !verifiedItems.has(item.id);
                 
@@ -680,26 +595,21 @@
             attachEvents();
         }
 
-        const warningModal = document.getElementById('warningModal');
-        const detailModal = document.getElementById('detailModal');
-        let pendingItem = null;
-
         function attachEvents() {
             document.querySelectorAll('.catalog-card, .log-card').forEach(el => {
                 el.addEventListener('click', (e) => {
                     const id = parseInt(el.getAttribute('data-id'));
                     const item = worksData.find(w => w.id === id);
-
                     if (item.type === 'doujin') {
-                        e.preventDefault();
                         openDetailModal(item);
                     } else {
-                        const needsWarning = item.tw !== '' && !verifiedItems.has(id);
-                        if (needsWarning) {
-                            e.preventDefault();
+                        const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
+                        if (twValue !== '' && !verifiedItems.has(id)) {
                             pendingItem = item;
-                            document.getElementById('modalMsg').innerText = i18n[currentLang].warn_msg.replace('%s', item.tw);
+                            document.getElementById('modalMsg').innerText = i18n[currentLang].warn_msg.replace('%s', twValue);
                             warningModal.classList.add('active');
+                        } else {
+                            window.open(item.link, '_blank');
                         }
                     }
                 });
@@ -709,71 +619,46 @@
         function openDetailModal(item) {
             document.getElementById('detailImg').src = item.img;
             document.getElementById('detailTitle').innerText = item.title[currentLang];
-            
             const twTag = document.getElementById('detailWarning');
-            // TW 다국어 처리
             const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
-
             if (twValue) {
                 twTag.innerText = `${i18n[currentLang].warning_prefix} ${twValue}`;
                 twTag.style.display = 'inline-block';
             } else {
                 twTag.style.display = 'none';
             }
-
             document.getElementById('detailSpec').innerText = item.spec;
             document.getElementById('detailDesc').innerText = item.desc[currentLang];
             document.getElementById('detailLink').href = item.link; 
             detailModal.classList.add('active');
         }
 
-        document.getElementById('btnDecline').addEventListener('click', () => warningModal.classList.remove('active'));
-        document.getElementById('closeWarning').addEventListener('click', () => warningModal.classList.remove('active'));
-        document.getElementById('closeDetail').addEventListener('click', () => detailModal.classList.remove('active'));
-        
-        document.getElementById('btnAccept').addEventListener('click', () => {
-            if (pendingItem) {
-                verifiedItems.add(pendingItem.id);
-                warningModal.classList.remove('active');
-                renderWorks(); 
-                window.open(pendingItem.link, '_blank');
-            }
-        });
-
-        document.querySelectorAll('.lang-btn').forEach(btn => {
-            btn.addEventListener('click', (e) => {
-                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
-                e.target.classList.add('active');
-                currentLang = e.target.getAttribute('data-lang');
-                document.body.setAttribute('data-lang', currentLang);
-                
-                document.querySelectorAll('[data-i18n]').forEach(el => {
-                    const key = el.getAttribute('data-i18n');
-                    if (i18n[currentLang][key]) el.innerHTML = i18n[currentLang][key];
-                });
-                renderSchedule();
-                renderWorks();
-                loadSong();
+        function renderPlaylist() {
+            const listEl = document.getElementById('playlistList');
+            if(!listEl) return;
+            listEl.innerHTML = '';
+            playlist.forEach((song, index) => {
+                const item = document.createElement('div');
+                item.className = `playlist-item ${index === songIndex ? 'active' : ''}`;
+                item.innerHTML = `
+                    <span class="track-num">${String(index + 1).padStart(2, '0')}</span>
+                    <div class="track-info-mini">
+                        <span class="track-name-mini">${song.title[currentLang]}</span>
+                        <span class="track-artist-mini">${song.artist}</span>
+                    </div>
+                `;
+                item.onclick = () => { songIndex = index; loadSong(); playSong(); };
+                listEl.appendChild(item);
             });
-        });
-
-        let songIndex = 0;
-        const audio = document.getElementById('vocaloidAudio');
-        const lpRecord = document.getElementById('lpRecord');
-        const playBtn = document.getElementById('playBtn');
-        const watchMvBtn = document.getElementById('watchMvBtn');
-        const mvModal = document.getElementById('mvModal');
-        const mvContainer = document.getElementById('mvContainer');
+        }
 
         function loadSong() {
             const song = playlist[songIndex];
-            if(!song) return; // 노래 데이터 없으면 중단
-
+            if(!song) return;
             document.getElementById('trackTitle').innerText = song.title[currentLang];
             document.getElementById('trackArtist').innerText = song.artist;
             document.getElementById('trackDesc').innerText = song.desc[currentLang];
             document.getElementById('albumCover').src = song.cover;
-            
             if (song.youtubeId) {
                 watchMvBtn.style.display = 'flex';
                 watchMvBtn.onclick = () => {
@@ -781,24 +666,35 @@
                     mvContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${song.youtubeId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
                     mvModal.classList.add('active');
                 };
-            } else {
-                watchMvBtn.style.display = 'none';
-            }
-
-            // 오디오 소스 설정 (파일이 없어도 에러나서 멈추지 않게 함)
-            if (song.src && !audio.src.includes(song.src)) {
-                audio.src = song.src;
-                audio.load(); // 새로 고침
-            }
+            } else { watchMvBtn.style.display = 'none'; }
+            if (song.src && !audio.src.includes(song.src)) { audio.src = song.src; audio.load(); }
+            renderPlaylist();
         }
 
-        function playSong() { audio.play(); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
+        function playSong() { audio.play().catch(()=>{}); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
         function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
 
+        /* =========================================
+           5. 이벤트 리스너 설정
+        ========================================= */
+        document.querySelectorAll('.lang-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+                e.target.classList.add('active');
+                currentLang = e.target.getAttribute('data-lang');
+                document.body.setAttribute('data-lang', currentLang);
+                document.querySelectorAll('[data-i18n]').forEach(el => {
+                    const key = el.getAttribute('data-i18n');
+                    if (i18n[currentLang][key]) el.innerHTML = i18n[currentLang][key];
+                });
+                renderSchedule(); renderWorks(); loadSong();
+            });
+        });
+
         playBtn.addEventListener('click', () => audio.paused ? playSong() : pauseSong());
-        audio.addEventListener('ended', () => { pauseSong(); document.getElementById('nextBtn').click(); });
         document.getElementById('prevBtn').addEventListener('click', () => { songIndex = (songIndex - 1 + playlist.length) % playlist.length; loadSong(); playSong(); });
         document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(); playSong(); });
+        audio.addEventListener('ended', () => document.getElementById('nextBtn').click());
 
         const progressBar = document.getElementById('progressBar');
         function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.floor(sec % 60); return `${m}:${s < 10 ? '0' : ''}${s}`; }
@@ -806,15 +702,28 @@
         audio.addEventListener('timeupdate', () => { progressBar.value = Math.floor(audio.currentTime); document.getElementById('currentTime').innerText = formatTime(audio.currentTime); });
         progressBar.addEventListener('input', () => audio.currentTime = progressBar.value);
 
-        document.querySelectorAll('.modal-overlay').forEach(modal => {
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    modal.classList.remove('active');
-                    if(modal.id === 'mvModal') mvContainer.innerHTML = '';
-                }
-            });
+        document.getElementById('btnDecline').addEventListener('click', () => warningModal.classList.remove('active'));
+        document.getElementById('closeWarning').addEventListener('click', () => warningModal.classList.remove('active'));
+        document.getElementById('closeDetail').addEventListener('click', () => detailModal.classList.remove('active'));
+        document.getElementById('closeMv').addEventListener('click', () => { mvModal.classList.remove('active'); mvContainer.innerHTML = ''; });
+
+        document.getElementById('btnAccept').addEventListener('click', () => {
+            if (pendingItem) {
+                verifiedItems.add(pendingItem.id);
+                warningModal.classList.remove('active');
+                renderWorks();
+                window.open(pendingItem.link, '_blank');
+            }
         });
 
+        window.addEventListener('click', (e) => {
+            if (e.target.classList.contains('modal-overlay')) {
+                e.target.classList.remove('active');
+                if(e.target.id === 'mvModal') mvContainer.innerHTML = '';
+            }
+        });
+
+        /* 초기 실행 */
         renderSchedule(); renderWorks(); loadSong();
     </script>
 </body>
