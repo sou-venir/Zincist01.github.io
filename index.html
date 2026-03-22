@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayeon | Archive</title>
+    <title>Ayeon | Director Archive</title>
     
-    <!-- 구글 폰트: 나눔명조(KR), Noto Serif JP(JP), Playfair Display(EN), Noto Serif SC/TC(CN/TW) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Serif+JP:wght@400;700&family=Noto+Serif+SC:wght@400;700&family=Noto+Serif+TC:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -18,7 +17,7 @@
             --bg-color: #f8f6f0; 
             --text-main: #2b2b2b; 
             --text-sub: #7a756d;
-            --point-color: #a685e2; /* 연보라색 유지 */
+            --point-color: #a685e2; 
             --border-color: #dcd7ce;
             --police-yellow: #f1c40f; 
             --transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -46,13 +45,13 @@
         .section-title { font-size: 2.2rem; font-weight: 700; margin-bottom: 60px; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
 
         /* =========================================
-           [헤더 & 5개 국어 토글]
+           [헤더 & 언어]
         ========================================= */
         header { position: fixed; top: 0; width: 100%; background: rgba(248, 246, 240, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border-color); z-index: 100; }
         .nav-inner { display: flex; justify-content: space-between; align-items: center; height: 70px; }
         .logo { font-size: 1.5rem; font-weight: 800; color: var(--point-color); letter-spacing: 1px; }
         .nav-links { display: flex; gap: 30px; align-items: center; }
-        .nav-links a { font-size: 0.85rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1.5px; }
+        .nav-links a { font-size: 0.85rem; font-weight: 700; transition: color 0.3s; text-transform: uppercase; letter-spacing: 1px; }
         .nav-links a:hover { color: var(--point-color); }
         
         .lang-group { display: flex; gap: 10px; margin-left: 20px; border-left: 1px solid var(--border-color); padding-left: 20px; }
@@ -60,72 +59,66 @@
         .lang-btn.active, .lang-btn:hover { color: var(--point-color); }
 
         /* =========================================
-           [Hero: 완전히 전문적이고 구조적인 디자인]
+           [Hero 섹션]
         ========================================= */
-        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); padding-top: 70px; }
-        
-        .hero-inner { width: 100%; text-align: center; }
-        
-        /* 전문성을 강조하는 상단 레이블 */
+        #hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; border-bottom: 1px solid var(--border-color); padding-top: 70px; text-align: center; }
         .hero-label { font-family: sans-serif; font-size: 0.8rem; font-weight: 700; letter-spacing: 4px; color: var(--text-sub); text-transform: uppercase; margin-bottom: 20px; }
-        
-        /* 거대하고 압도적인 영문 메인 타이틀 */
         .hero-title-en { font-family: 'Playfair Display', serif; font-size: 5.5rem; font-weight: 800; margin: 0; line-height: 1; letter-spacing: -2px; color: var(--text-main); }
-        
-        /* 다국어가 적용되는 프로페셔널 서브 타이틀 */
         .hero-subtitle { font-size: 1.2rem; font-weight: 400; color: var(--text-sub); margin: 30px auto 40px; max-width: 600px; line-height: 1.6; word-break: keep-all; }
         
-        /* 데이터 포인트 (스펙을 시크하게 나열) */
         .hero-data-row { display: flex; justify-content: center; gap: 40px; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 20px 0; margin-bottom: 40px; max-width: 800px; margin-left: auto; margin-right: auto; }
         .data-item { display: flex; flex-direction: column; align-items: center; }
         .data-num { font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 700; color: var(--point-color); line-height: 1; }
         .data-label { font-family: sans-serif; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; color: var(--text-sub); text-transform: uppercase; margin-top: 5px; }
 
         .btn-outline { display: inline-block; padding: 14px 40px; border: 1px solid var(--text-main); color: var(--text-main); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; transition: var(--transition); background: transparent; font-family: sans-serif; font-weight: 700; }
-        .btn-outline:hover { background: var(--point-color); border-color: var(--point-color); color: #fff; }
+        .btn-outline:hover { background: var(--point-color); border-color: var(--point-color); color: #fff; box-shadow: 0 10px 20px rgba(166,133,226,0.3); }
 
         /* =========================================
-           [작품: 동인지 (A5) & 픽시브 로그 (Square)]
+           [일정 (Schedule) 섹션]
+        ========================================= */
+        .schedule-list { border-top: 2px solid var(--text-main); }
+        .schedule-item { display: flex; justify-content: space-between; align-items: center; padding: 25px 10px; border-bottom: 1px solid var(--border-color); transition: background 0.3s; }
+        .schedule-item:hover { background: rgba(166, 133, 226, 0.05); }
+        .sch-date { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--point-color); width: 120px; flex-shrink: 0; }
+        .sch-name { font-size: 1.1rem; font-weight: 700; flex-grow: 1; }
+        .sch-booth { font-family: sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--text-sub); background: #eee; padding: 5px 15px; border-radius: 20px; }
+
+        /* =========================================
+           [작품: 동인지 & 픽시브]
         ========================================= */
         .subsection-title { font-size: 1.4rem; font-weight: 700; margin-bottom: 30px; border-left: 4px solid var(--point-color); padding-left: 15px; }
-        
         .catalog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 40px; margin-bottom: 80px; }
         .catalog-card { display: block; text-align: center; cursor: pointer; }
         .catalog-img-wrap { width: 100%; aspect-ratio: 1 / 1.414; background: #eee; margin-bottom: 15px; position: relative; overflow: hidden; border: 1px solid var(--border-color); box-shadow: 5px 5px 15px rgba(0,0,0,0.05); transition: var(--transition); }
         .catalog-card:hover .catalog-img-wrap { transform: translateY(-5px); box-shadow: 5px 15px 25px rgba(166, 133, 226, 0.2); }
         .catalog-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
         .catalog-info h3 { font-size: 1.1rem; margin: 0 0 5px 0; }
-        .catalog-info p { font-size: 0.85rem; color: var(--text-sub); margin: 0; }
-
+        
         .log-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 20px; }
         .log-card { display: block; cursor: pointer; }
         .log-img-wrap { width: 100%; aspect-ratio: 1 / 1; background: #eee; position: relative; overflow: hidden; transition: var(--transition); border: 1px solid var(--border-color); }
         .log-card:hover .log-img-wrap { transform: scale(1.02); box-shadow: 0 10px 20px rgba(166, 133, 226, 0.15); }
         .log-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
 
-        /* =========================================
-           [폴리스 라인 (경고창) 효과]
-        ========================================= */
+        /* 폴리스 라인 */
         .tw-locked img { filter: blur(25px) grayscale(40%); }
         .police-line {
             position: absolute; top: 50%; left: -10%; width: 120%; height: 40px;
             background: repeating-linear-gradient(45deg, var(--police-yellow), var(--police-yellow) 15px, #111 15px, #111 30px);
             transform: translateY(-50%) rotate(-10deg);
-            display: flex; justify-content: center; align-items: center;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2;
+            display: flex; justify-content: center; align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.3); z-index: 2;
         }
         .police-text { background: #111; color: var(--police-yellow); padding: 2px 10px; font-weight: 800; font-family: sans-serif; font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
 
         /* =========================================
-           [음악: LP판 (Vinyl) 플레이어]
+           [음악: LP 플레이어 + MV 버튼 + 설명]
         ========================================= */
         .lp-player-container { display: flex; align-items: center; justify-content: center; gap: 50px; flex-wrap: wrap; background: #fdfdfc; padding: 50px; border: 1px solid var(--border-color); box-shadow: 10px 10px 0px rgba(166, 133, 226, 0.1); }
-        
         .lp-visual { position: relative; width: 200px; height: 200px; }
         .lp-record { width: 100%; height: 100%; background: #111; border-radius: 50%; border: 2px solid #333; position: relative; display: flex; justify-content: center; align-items: center; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transition: transform 0.3s; }
         .lp-record::before { content: ''; position: absolute; width: 80%; height: 80%; border: 1px solid #222; border-radius: 50%; }
         .lp-record::after { content: ''; position: absolute; width: 60%; height: 60%; border: 1px solid #222; border-radius: 50%; }
-        
         .lp-label { width: 70px; height: 70px; border-radius: 50%; background: var(--point-color); overflow: hidden; z-index: 2; border: 2px solid #111; position: relative; display: flex; justify-content: center; align-items: center; }
         .lp-label img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
         .lp-label::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 10px; height: 10px; background: var(--bg-color); border-radius: 50%; }
@@ -133,25 +126,34 @@
         @keyframes spin { 100% { transform: rotate(360deg); } }
         .lp-record.playing { animation: spin 4s linear infinite; }
 
-        .lp-controls { width: 300px; }
-        .lp-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 5px; }
-        .lp-artist { font-size: 0.9rem; color: var(--point-color); margin-bottom: 20px; font-style: italic; }
+        .lp-controls { width: 350px; }
+        .lp-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 5px; }
+        .lp-title { font-size: 1.3rem; font-weight: 700; }
         
-        .lp-btns { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; }
+        /* 뮤비(MV) 시청 버튼 */
+        .btn-mv { background: #ff0000; color: #fff; border: none; padding: 4px 12px; border-radius: 20px; font-size: 0.75rem; font-weight: 800; font-family: sans-serif; cursor: pointer; display: flex; align-items: center; gap: 5px; transition: var(--transition); }
+        .btn-mv:hover { background: #cc0000; transform: scale(1.05); }
+
+        .lp-artist { font-size: 0.9rem; color: var(--point-color); margin-bottom: 15px; font-style: italic; }
+        /* 곡 설명 란 */
+        .lp-desc { font-size: 0.85rem; color: var(--text-sub); margin-bottom: 20px; line-height: 1.5; background: #f4f1ea; padding: 10px; border-radius: 5px; }
+        
+        .lp-btns { display: flex; gap: 15px; align-items: center; margin-bottom: 15px; }
         .lp-btn { background: none; border: 1px solid var(--text-main); width: 40px; height: 40px; border-radius: 50%; display: flex; justify-content: center; align-items: center; transition: var(--transition); }
         .lp-btn:hover { background: var(--text-main); color: var(--bg-color); }
         .lp-play-btn { width: 50px; height: 50px; background: var(--text-main); color: var(--bg-color); }
         .lp-play-btn:hover { background: var(--point-color); border-color: var(--point-color); }
-
         .progress-bar-wrap { display: flex; align-items: center; gap: 10px; font-size: 0.8rem; font-family: sans-serif; }
         .progress-bar { flex-grow: 1; -webkit-appearance: none; height: 2px; background: var(--border-color); outline: none; }
         .progress-bar::-webkit-slider-thumb { -webkit-appearance: none; width: 10px; height: 10px; background: var(--point-color); border-radius: 50%; cursor: pointer; }
 
         /* =========================================
-           [프로필 (About)]
+           [프로필 (About) - 원형 사진]
         ========================================= */
         .profile-container { display: flex; gap: 50px; align-items: center; background: #fdfdfc; padding: 50px; border: 1px solid var(--border-color); box-shadow: -10px 10px 0px rgba(166, 133, 226, 0.1); }
-        .profile-img { flex-shrink: 0; width: 250px; height: 350px; background: #eee; border: 1px solid var(--border-color); object-fit: cover; }
+        /* 프사 원형으로 변경 */
+        .profile-img { flex-shrink: 0; width: 280px; height: 280px; border-radius: 50%; background: #eee; border: 2px solid var(--point-color); object-fit: cover; padding: 5px; }
+        
         .profile-text h3 { font-size: 2rem; margin: 0 0 10px 0; color: var(--point-color); }
         .profile-text p { font-size: 1rem; color: var(--text-sub); margin-bottom: 30px; line-height: 1.8; }
         
@@ -163,24 +165,43 @@
         footer { text-align: center; padding: 40px 0; font-size: 0.75rem; color: var(--text-sub); text-transform: uppercase; letter-spacing: 1px; font-family: sans-serif; }
 
         /* =========================================
-           [경고 모달]
+           [모달: 경고창, 동인지 상세, 뮤비 시청]
         ========================================= */
-        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: var(--transition); }
+        .modal-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.85); display: flex; justify-content: center; align-items: center; z-index: 1000; opacity: 0; visibility: hidden; transition: var(--transition); backdrop-filter: blur(5px); }
         .modal-overlay.active { opacity: 1; visibility: visible; }
-        .modal-box { background: var(--bg-color); padding: 50px; max-width: 450px; text-align: center; border: 1px solid var(--point-color); box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
+        
+        /* 1. 경고창 모달 */
+        .modal-box { background: var(--bg-color); padding: 50px; max-width: 450px; text-align: center; border: 1px solid var(--point-color); box-shadow: 0 15px 30px rgba(0,0,0,0.5); position: relative; }
         .modal-box h3 { color: var(--point-color); font-size: 1.5rem; margin-bottom: 15px; }
         .modal-box p { font-size: 1rem; margin-bottom: 30px; }
         .btn-group { display: flex; justify-content: center; gap: 15px; }
         .btn-solid { background: var(--text-main); color: var(--bg-color); border: none; padding: 10px 20px; transition: var(--transition); text-transform: uppercase; font-size: 0.85rem; letter-spacing: 1px; font-family: sans-serif; font-weight: 700; }
         .btn-solid:hover { background: var(--point-color); }
+        .close-modal { position: absolute; top: 15px; right: 20px; font-size: 1.5rem; cursor: pointer; color: var(--text-sub); transition: 0.2s; }
+        .close-modal:hover { color: var(--point-color); }
+
+        /* 2. 동인지 상세 정보 모달 */
+        .detail-box { max-width: 700px; width: 90%; text-align: left; padding: 40px; display: flex; gap: 30px; align-items: flex-start; }
+        .detail-cover { width: 250px; flex-shrink: 0; border: 1px solid var(--border-color); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .detail-cover img { width: 100%; height: auto; display: block; }
+        .detail-info { flex-grow: 1; }
+        .detail-title { font-size: 1.8rem; font-weight: 800; color: var(--point-color); margin-bottom: 10px; line-height: 1.2; }
+        /* 스펙 정보 (3/20春コミ...) */
+        .detail-spec { display: inline-block; background: #e8e4db; padding: 8px 15px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; border-radius: 5px; font-family: sans-serif; }
+        .detail-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 30px; line-height: 1.6; }
+
+        /* 3. 유튜브 뮤비 모달 */
+        .mv-box { width: 90%; max-width: 900px; background: #000; padding: 0; border: none; aspect-ratio: 16/9; position: relative; }
+        .mv-box iframe { width: 100%; height: 100%; border: none; }
+        .close-mv { position: absolute; top: -40px; right: 0; color: #fff; font-size: 2rem; cursor: pointer; }
 
         @media (max-width: 768px) {
             .hero-title-en { font-size: 3.5rem; }
             .hero-data-row { flex-direction: column; gap: 20px; border-top: none; padding: 0; margin-bottom: 30px; }
             .profile-container { flex-direction: column; text-align: center; }
-            .profile-img { width: 100%; max-width: 300px; height: auto; aspect-ratio: 1/1.4; }
-            .meta-row { flex-direction: column; text-align: center; margin-bottom: 15px; }
-            .meta-title { width: 100%; margin-bottom: 5px; }
+            .profile-img { width: 200px; height: 200px; }
+            .detail-box { flex-direction: column; padding: 30px 20px; align-items: center; text-align: center; }
+            .detail-cover { width: 180px; }
         }
     </style>
 </head>
@@ -190,10 +211,10 @@
         <div class="container nav-inner">
             <div class="logo">Ayeon.</div>
             <nav class="nav-links">
+                <a href="#schedule" data-i18n="nav_schedule">Schedule</a>
                 <a href="#artworks">Artworks</a>
                 <a href="#music">Music</a>
                 <a href="#about">About</a>
-                <!-- 언어 토글 (5개 국어) -->
                 <div class="lang-group">
                     <button class="lang-btn active" data-lang="ko">KR</button>
                     <button class="lang-btn" data-lang="en">EN</button>
@@ -205,36 +226,35 @@
         </div>
     </header>
 
-    <!-- 완전히 프로페셔널해진 Hero 섹션 -->
     <section id="hero">
         <div class="container hero-inner">
             <div class="hero-label">Creative Archive</div>
             <h1 class="hero-title-en">ART & SOUND<br>DIRECTOR</h1>
             
-            <p class="hero-subtitle" data-i18n="hero_desc">
-                시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱(A5), 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.
-            </p>
+            <p class="hero-subtitle" data-i18n="hero_desc">시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱, 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.</p>
             
-            <!-- 세련된 데이터 포인트 배치 -->
             <div class="hero-data-row">
-                <div class="data-item">
-                    <span class="data-num">30K+</span>
-                    <span class="data-label">Twitter Likes (Meme)</span>
-                </div>
-                <div class="data-item">
-                    <span class="data-num">100K+</span>
-                    <span class="data-label">YouTube Views</span>
-                </div>
-                <div class="data-item">
-                    <span class="data-num">2024</span>
-                    <span class="data-label">Portfolio Est.</span>
-                </div>
+                <div class="data-item"><span class="data-num">30K+</span><span class="data-label">Twitter Likes</span></div>
+                <div class="data-item"><span class="data-num">100K+</span><span class="data-label">YouTube Views</span></div>
+                <div class="data-item"><span class="data-num">2024</span><span class="data-label">Portfolio Est.</span></div>
             </div>
 
+            <!-- 커미션 버튼을 눈에 띄게! -->
             <a href="https://crepe.cm/" target="_blank" class="btn-outline" data-i18n="btn_commission">COMMISSION INFO</a>
         </div>
     </section>
 
+    <!-- 🗓️ 행사 일정 섹션 -->
+    <section id="schedule">
+        <div class="container">
+            <h2 class="section-title" data-i18n="sec_schedule">Event Schedule</h2>
+            <div class="schedule-list" id="scheduleList">
+                <!-- JS에서 데이터 렌더링 -->
+            </div>
+        </div>
+    </section>
+
+    <!-- 🎨 작품 섹션 -->
     <section id="artworks">
         <div class="container">
             <h2 class="section-title">Artworks</h2>
@@ -247,19 +267,24 @@
         </div>
     </section>
 
+    <!-- 🎵 음악 섹션 -->
     <section id="music">
         <div class="container">
             <h2 class="section-title">Sound Production</h2>
             <div class="lp-player-container">
                 <div class="lp-visual">
-                    <div class="lp-record" id="lpRecord">
-                        <div class="lp-label"><img src="" alt="Album Cover" id="albumCover"></div>
-                    </div>
+                    <div class="lp-record" id="lpRecord"><div class="lp-label"><img src="" alt="Cover" id="albumCover"></div></div>
                 </div>
                 
                 <div class="lp-controls">
-                    <div class="lp-title" id="trackTitle">Loading...</div>
+                    <div class="lp-header">
+                        <div class="lp-title" id="trackTitle">Loading...</div>
+                        <!-- 뮤비 버튼 -->
+                        <button class="btn-mv" id="watchMvBtn" style="display:none;">▶ Watch MV</button>
+                    </div>
                     <div class="lp-artist" id="trackArtist">Loading...</div>
+                    <div class="lp-desc" id="trackDesc">Loading description...</div>
+                    
                     <audio id="vocaloidAudio"></audio>
                     
                     <div class="lp-btns">
@@ -278,29 +303,22 @@
         </div>
     </section>
 
+    <!-- 👤 프로필 (원형 프사) -->
     <section id="about">
         <div class="container">
             <h2 class="section-title">Director Profile</h2>
             <div class="profile-container">
-                <img src="https://via.placeholder.com/400x560/dcd7ce/a685e2?text=Ayeon+Portrait" alt="Ayeon Portrait" class="profile-img">
+                <!-- 아연아! 여기에 네 프사 링크 넣으면 완전 동그랗게 나와! -->
+                <img src="https://via.placeholder.com/400x400/dcd7ce/a685e2?text=Ayeon" alt="Ayeon Portrait" class="profile-img">
                 
                 <div class="profile-text">
                     <h3>Ayeon</h3>
-                    <p data-i18n="about_desc">디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다. 다양한 창작 툴을 활용해 아이디어를 구체화하는 데 집중하고 있습니다.</p>
+                    <p data-i18n="about_desc">디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다.</p>
                     
                     <div class="profile-meta">
-                        <div class="meta-row">
-                            <div class="meta-title" data-i18n="meta_tools">Visual</div>
-                            <div class="meta-desc">Procreate, Clip Studio</div>
-                        </div>
-                        <div class="meta-row">
-                            <div class="meta-title" data-i18n="meta_sound">Audio</div>
-                            <div class="meta-desc">Ableton Live, Synthesizer V (Yi Xi), UTAU</div>
-                        </div>
-                        <div class="meta-row">
-                            <div class="meta-title">Contact</div>
-                            <div class="meta-desc"><a href="mailto:ayeon@example.com" style="text-decoration: underline;">ayeon@example.com</a></div>
-                        </div>
+                        <div class="meta-row"><div class="meta-title" data-i18n="meta_tools">Visual</div><div class="meta-desc">Procreate, Clip Studio</div></div>
+                        <div class="meta-row"><div class="meta-title" data-i18n="meta_sound">Audio</div><div class="meta-desc">Ableton Live, Synthesizer V (Yi Xi), UTAU</div></div>
+                        <div class="meta-row"><div class="meta-title">Contact</div><div class="meta-desc"><a href="mailto:ayeon@example.com">ayeon@example.com</a></div></div>
                     </div>
                 </div>
             </div>
@@ -309,80 +327,162 @@
 
     <footer>&copy; 2024 Ayeon. All rights reserved.</footer>
 
+    <!-- =========================================
+         [모달 창 모음]
+    ========================================= -->
+    
+    <!-- 1. 경고창 모달 -->
     <div class="modal-overlay" id="warningModal">
         <div class="modal-box">
+            <span class="close-modal" id="closeWarning">&times;</span>
             <h3 data-i18n="modal_title">⚠️ 열람 주의</h3>
             <p id="modalMsg"></p>
             <div class="btn-group">
-                <button class="btn-outline" id="btnDecline" data-i18n="modal_no" style="padding: 10px 20px;">돌아가기</button>
+                <button class="btn-outline" id="btnDecline" data-i18n="modal_no">돌아가기</button>
                 <button class="btn-solid" id="btnAccept" data-i18n="modal_yes">확인했습니다</button>
             </div>
         </div>
     </div>
 
+    <!-- 2. 동인지 상세 정보 모달 -->
+    <div class="modal-overlay" id="detailModal">
+        <div class="modal-box detail-box">
+            <span class="close-modal" id="closeDetail">&times;</span>
+            <div class="detail-cover"><img src="" id="detailImg" alt="Cover"></div>
+            <div class="detail-info">
+                <h3 class="detail-title" id="detailTitle">Title</h3>
+                <div class="detail-spec" id="detailSpec">3/20春コミ 夢ポケ８...</div>
+                <div class="detail-desc" id="detailDesc">Description goes here...</div>
+                <a href="#" target="_blank" class="btn-solid" id="detailLink" data-i18n="btn_pixiv">View on Pixiv</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 뮤비 영상 모달 -->
+    <div class="modal-overlay" id="mvModal">
+        <div class="mv-box">
+            <span class="close-mv" id="closeMv">&times;</span>
+            <!-- 여기에 유튜브 아이프레임이 꽂힘 -->
+            <div id="mvContainer" style="width: 100%; height: 100%;"></div>
+        </div>
+    </div>
+
     <!-- =========================================
-         [JavaScript 로직]
+         [JavaScript 로직 & 데이터 세팅 안내]
     ========================================= -->
     <script>
-        /* ---------------------------------------------------
-           1. 5개 국어 번역 사전 (프로페셔널 버전 텍스트)
-        --------------------------------------------------- */
+        /* 
+           💡 아연아 필독! [데이터 수정 가이드] 💡
+           
+           1. 이미지/링크 바꾸기: 'img: "주소"', 'link: "주소"' 안에 따옴표를 지우지 말고 그 안의 글자만 네 주소로 바꿔!
+           2. 유튜브 뮤비: playlist의 'youtubeId'에 네 유튜브 주소의 맨 끝부분(v= 다음의 영어/숫자 11자리)만 넣으면 돼! (예: dQw4w9WgXcQ)
+        */
+
         const i18n = {
             ko: {
-                hero_desc: '시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱(A5), 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.',
-                btn_commission: '커미션 안내', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
-                about_desc: '디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다. 다양한 창작 툴을 활용해 아이디어를 구체화하는 데 집중하고 있습니다.',
+                nav_schedule: 'Schedule', hero_desc: '시각적 서사와 청각적 경험을 설계합니다. 일러스트레이션, 인디 퍼블리싱, 그리고 사운드 프로덕션을 아우르는 종합 크리에이티브 아카이브.', btn_commission: '커미션 안내',
+                sec_schedule: 'Event Schedule', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
+                about_desc: '디자인과 사운드를 융합하여 입체적인 작품 세계를 구축하는 디렉터입니다. 영화와 서브컬처 문법을 기반으로, 강렬한 비주얼과 정교한 사운드트랙이 결합된 경험을 제공합니다.',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 열람 주의', modal_no: '돌아가기', modal_yes: '확인했습니다',
-                warn_msg: '이 작품은 성인 요소(R-18) 또는 민감한 소재(%s)를 포함하고 있습니다. 열람하시겠습니까?'
+                warn_msg: '이 작품은 성인 요소(R-18) 또는 민감한 소재(%s)를 포함하고 있습니다. 열람하시겠습니까?',
+                btn_pixiv: 'Pixiv에서 보기'
             },
             en: {
-                hero_desc: 'Designing visual narratives and auditory experiences. A comprehensive creative archive spanning illustration, indie publishing (A5), and sound production.',
-                btn_commission: 'Commission Info', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
+                nav_schedule: 'Schedule', hero_desc: 'Designing visual narratives and auditory experiences. A comprehensive creative archive spanning illustration, publishing, and sound.', btn_commission: 'Commission Info',
+                sec_schedule: 'Event Schedule', title_doujin: 'Indie Publishing (A5)', title_illust: 'Visual Works',
                 about_desc: 'A director who builds multi-dimensional worlds by fusing design and sound. Based on cinema and subculture grammar, I provide experiences where striking visuals meet intricate soundtracks.',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ Content Warning', modal_no: 'Go Back', modal_yes: 'I Understand',
-                warn_msg: 'This work contains adult (R-18) elements or sensitive material (%s). Proceed?'
+                warn_msg: 'This work contains adult (R-18) elements or sensitive material (%s). Proceed?',
+                btn_pixiv: 'View on Pixiv'
             },
             jp: {
-                hero_desc: '視覚的な物語と聴覚的な体験を設計します。イラストレーション、インディーズ出版（A5）、そしてサウンドプロダクションを網羅する総合クリエイティブアーカイブ。',
-                btn_commission: 'コミッション案内', title_doujin: 'インディーズ出版 (A5)', title_illust: 'ビジュアルワークス',
-                about_desc: 'デザインとサウンドを融合させ、立体的な作品世界を構築するディレクターです。映画やサブカルチャーの文脈をベースに、強烈なビジュアルと精巧なサウンドトラックが結びついた体験を提供します。',
+                nav_schedule: 'Schedule', hero_desc: '視覚的な物語と聴覚的な体験を設計します。イラスト、インディーズ出版、そしてサウンドプロダクションを網羅する総合アーカイブ。', btn_commission: 'コミッション案内',
+                sec_schedule: 'Event Schedule', title_doujin: 'インディーズ出版 (A5)', title_illust: 'ビジュアルワークス',
+                about_desc: 'デザインとサウンドを融合させ、立体的な作品世界を構築するディレクターです。映画やサブカルチャーの文脈をベースに、強烈なビジュアルと精巧な音楽が結びついた体験を提供します。',
                 meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 閲覧注意', modal_no: '戻る', modal_yes: '確認しました',
-                warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？'
+                warn_msg: 'この作品には成人向け（R-18）または敏感なテーマ（%s）が含まれています。閲覧しますか？',
+                btn_pixiv: 'Pixivで見る'
             },
             'zh-cn': {
-                hero_desc: '设计视觉叙事与听觉体验。涵盖插画、独立出版（A5）与声音制作的综合创意档案。',
-                btn_commission: '约稿信息', title_doujin: '独立出版 (A5)', title_illust: '视觉作品',
+                nav_schedule: '日程安排', hero_desc: '设计视觉叙事与听觉体验。涵盖插画、独立出版与声音制作的综合创意档案。', btn_commission: '约稿信息',
+                sec_schedule: '活动日程', title_doujin: '独立出版 (A5)', title_illust: '视觉作品',
                 about_desc: '融合设计与声音，构建立体作品世界的总监。基于电影与亚文化语境，提供强烈视觉与精致配乐相结合的体验。',
-                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                meta_tools: '视觉工具', meta_sound: '音频工具', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 内容警告', modal_no: '返回', modal_yes: '确认查看',
-                warn_msg: '此作品包含成人(R-18)元素或敏感题材(%s)。是否继续？'
+                warn_msg: '此作品包含成人(R-18)元素或敏感题材(%s)。是否继续？',
+                btn_pixiv: '在 Pixiv 查看'
             },
             'zh-tw': {
-                hero_desc: '設計視覺敘事與聽覺體驗。涵蓋插畫、獨立出版（A5）與聲音製作的綜合創意檔案。',
-                btn_commission: '委託資訊', title_doujin: '獨立出版 (A5)', title_illust: '視覺作品',
+                nav_schedule: '日程安排', hero_desc: '設計視覺敘事與聽覺體驗。涵蓋插畫、獨立出版與聲音製作的綜合創意檔案。', btn_commission: '委託資訊',
+                sec_schedule: '活動日程', title_doujin: '獨立出版 (A5)', title_illust: '視覺作品',
                 about_desc: '融合設計與聲音，構建立體作品世界的總監。基於電影與亞文化語境，提供強烈視覺與精緻配樂相結合的體驗。',
-                meta_tools: 'Visual', meta_sound: 'Audio', tw_label: 'RESTRICTED',
+                meta_tools: '視覺工具', meta_sound: '音訊工具', tw_label: 'RESTRICTED',
                 modal_title: '⚠️ 內容警告', modal_no: '返回', modal_yes: '確認查看',
-                warn_msg: '此作品包含成人(R-18)元素或敏感題材(%s)。是否繼續？'
+                warn_msg: '此作品包含成人(R-18)元素或敏感題材(%s)。是否繼續？',
+                btn_pixiv: '在 Pixiv 查看'
             }
         };
 
-        /* ---------------------------------------------------
-           2. 작품 데이터 (5개 국어 지원)
-        --------------------------------------------------- */
+        /* 🗓️ [행사 일정 데이터] 여기에 날짜, 이름, 부스를 적어! */
+        const scheduleData = [
+            { date: '2024.03.20', name: { ko: '春コミ 夢ポケ８', en: 'Haru Comic City', jp: '春コミ 夢ポケ８', 'zh-cn': '春Comi 梦Poke8', 'zh-tw': '春Comi 夢Poke8' }, booth: '東A-01a' },
+            { date: '2024.08.12', name: { ko: '여름 코믹마켓 (C104)', en: 'Comic Market 104', jp: '夏コミ (C104)', 'zh-cn': '夏Comi (C104)', 'zh-tw': '夏Comi (C104)' }, booth: '西め-42b' }
+        ];
+
+        /* 🎨 [작품 데이터] spec(동인지 정보), desc(상세 설명) 추가됨! */
         const worksData = [
-            { id: 1, type: 'doujin', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x565/eee/a685e2?text=Kajishiyu+Vol.1', title: { ko: '카지시유 - 이방인', en: 'Kajishiyu - Stranger', jp: 'Kajishiyu - 異邦人', 'zh-cn': 'Kajishiyu - 异乡人', 'zh-tw': 'Kajishiyu - 異鄉人' }, desc: { ko: 'B5 / 32p / R-18', en: 'B5 / 32p / R-18', jp: 'B5 / 32p / R-18', 'zh-cn': 'B5 / 32p / R-18', 'zh-tw': 'B5 / 32p / R-18' }, tw: '근친상간, 여남박' },
-            { id: 2, type: 'doujin', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x565/eee/7a756d?text=Tuheien+Vol.1', title: { ko: '투희엔 - 기록', en: 'Tuheien - Record', jp: 'Tuheien - 記録', 'zh-cn': 'Tuheien - 记录', 'zh-tw': 'Tuheien - 紀錄' }, desc: { ko: 'B5 / 24p / All Ages', en: 'B5 / 24p / All Ages', jp: 'B5 / 24p / 全年齢', 'zh-cn': 'B5 / 24p / 全年龄', 'zh-tw': 'B5 / 24p / 全年齡' }, tw: '' },
-            { id: 3, type: 'illust', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x400/eee/a685e2?text=Log+1', tw: '' },
-            { id: 4, type: 'illust', link: 'https://pixiv.net', img: 'https://via.placeholder.com/400x400/eee/111?text=Log+2+(R-18)', tw: 'R-18' }
+            { 
+                id: 1, type: 'doujin', tw: '근친상간, 여남박', 
+                img: 'https://via.placeholder.com/400x565/eee/a685e2?text=Kajishiyu', link: 'https://pixiv.net', 
+                title: { ko: '카지시유 - 이방인', en: 'Kajishiyu - Stranger', jp: 'カジシユ - 異邦人', 'zh-cn': 'Kajishiyu - 异乡人', 'zh-tw': 'Kajishiyu - 異鄉人' }, 
+                spec: '3/20春コミ 夢ポケ８ 『姉の誘惑』スグゼイ/R18/A5/24p/500円',
+                desc: { ko: '금기를 넘나드는 두 사람의 은밀한 기록.', en: 'A secret record of two people crossing the taboo.', jp: '禁忌を越える二人の秘密の記録。', 'zh-cn': '跨越禁忌的两人的秘密记录。', 'zh-tw': '跨越禁忌的兩人的秘密紀錄。' }
+            },
+            { 
+                id: 2, type: 'doujin', tw: '', 
+                img: 'https://via.placeholder.com/400x565/eee/7a756d?text=Tuheien', link: 'https://pixiv.net', 
+                title: { ko: '투희엔 - 기록', en: 'Tuheien - Record', jp: 'トウヒエン - 記録', 'zh-cn': 'Tuheien - 记录', 'zh-tw': 'Tuheien - 紀錄' }, 
+                spec: 'C104 新刊 / 全年齢 / B5 / 32p / 700円',
+                desc: { ko: '투희엔의 일상을 담은 일러스트 모음집.', en: 'Illustration collection of Tuheien.', jp: 'トウヒエンの日常を描いたイラスト集。', 'zh-cn': '包含Tuheien日常的插画集。', 'zh-tw': '包含Tuheien日常的插畫集。' }
+            },
+            // illust는 클릭 시 바로 픽시브(link)로 이동함. (상세 모달 안 뜸)
+            { id: 3, type: 'illust', tw: '', img: 'https://via.placeholder.com/400x400/eee/a685e2?text=Log+1', link: 'https://pixiv.net' }
+        ];
+
+        /* 🎵 [음악 데이터] desc(설명) 및 youtubeId(뮤비 ID) 추가됨! */
+        const playlist = [
+            { 
+                title: { ko: "별의 조각", en: "Star Fragment", jp: "星の欠片", 'zh-cn': "星之碎片", 'zh-tw': "星之碎片" }, 
+                artist: "Ayeon (Synthesizer V Yi Xi)", 
+                src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", 
+                cover: "https://via.placeholder.com/150/a685e2/fff?text=Ayeon",
+                desc: { ko: "유튜브 10만 뷰를 기록한 데뷔곡. 우주를 유영하는 듯한 신스 사운드가 특징입니다.", en: "Debut song with 100K+ views. Features synth sounds like swimming in space.", jp: "YouTube10万再生を記録したデビュー曲。宇宙を泳ぐようなシンセサウンドが特徴。", 'zh-cn': "YouTube 10万播放量出道曲。以仿佛在宇宙中遨游的合成器音效为特色。", 'zh-tw': "YouTube 10萬播放量出道曲。以彷彿在宇宙中遨遊的合成器音效為特色。" },
+                youtubeId: "dQw4w9WgXcQ" // 유튜브 영상 주소 v= 뒤에 있는 11자리!
+            }
         ];
 
         let currentLang = 'ko';
         let verifiedItems = new Set(); 
 
+        /* 일정 렌더링 */
+        function renderSchedule() {
+            const list = document.getElementById('scheduleList');
+            list.innerHTML = '';
+            scheduleData.forEach(item => {
+                list.insertAdjacentHTML('beforeend', `
+                    <div class="schedule-item">
+                        <div class="sch-date">${item.date}</div>
+                        <div class="sch-name">${item.name[currentLang]}</div>
+                        <div class="sch-booth">${item.booth}</div>
+                    </div>
+                `);
+            });
+        }
+
+        /* 작품 렌더링 */
         function renderWorks() {
             const doujinGrid = document.getElementById('doujinGrid');
             const illustGrid = document.getElementById('illustGrid');
@@ -390,102 +490,136 @@
 
             worksData.forEach(item => {
                 const needsWarning = item.tw !== '' && !verifiedItems.has(item.id);
-                
-                if (item.type === 'doujin') {
-                    const html = `
-                        <a href="${needsWarning ? 'javascript:void(0)' : item.link}" ${!needsWarning ? 'target="_blank"' : ''} class="catalog-card ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
-                            <div class="catalog-img-wrap">
-                                <img src="${item.img}" alt="cover">
-                                ${needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
-                            </div>
-                            <div class="catalog-info">
-                                <h3>${item.title[currentLang]}</h3>
-                                <p>${item.desc[currentLang]}</p>
-                            </div>
-                        </a>
-                    `;
-                    doujinGrid.insertAdjacentHTML('beforeend', html);
-                } else if (item.type === 'illust') {
-                    const html = `
-                        <a href="${needsWarning ? 'javascript:void(0)' : item.link}" ${!needsWarning ? 'target="_blank"' : ''} class="log-card ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
-                            <div class="log-img-wrap">
-                                <img src="${item.img}" alt="illust">
-                                ${needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
-                            </div>
-                        </a>
-                    `;
-                    illustGrid.insertAdjacentHTML('beforeend', html);
-                }
+                // 동인지는 모달을 띄우기 위해 href를 javascript:void(0)로 고정
+                const href = item.type === 'doujin' ? 'javascript:void(0)' : (needsWarning ? 'javascript:void(0)' : item.link);
+                const target = item.type === 'doujin' ? '' : (needsWarning ? '' : 'target="_blank"');
+
+                const html = `
+                    <a href="${href}" ${target} class="${item.type === 'doujin' ? 'catalog-card' : 'log-card'} ${needsWarning ? 'tw-locked' : ''}" data-id="${item.id}" data-type="${item.type}">
+                        <div class="${item.type === 'doujin' ? 'catalog-img-wrap' : 'log-img-wrap'}">
+                            <img src="${item.img}" alt="work">
+                            ${needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
+                        </div>
+                        ${item.type === 'doujin' ? `<div class="catalog-info"><h3>${item.title[currentLang]}</h3><p>${item.spec.split('/')[1] || ''}</p></div>` : ''}
+                    </a>
+                `;
+                item.type === 'doujin' ? doujinGrid.insertAdjacentHTML('beforeend', html) : illustGrid.insertAdjacentHTML('beforeend', html);
             });
             attachEvents();
         }
 
+        /* 모달 및 클릭 이벤트 (경고창 -> 상세 모달) */
         const warningModal = document.getElementById('warningModal');
+        const detailModal = document.getElementById('detailModal');
         let pendingItem = null;
 
         function attachEvents() {
-            document.querySelectorAll('.tw-locked').forEach(el => {
+            document.querySelectorAll('.catalog-card, .log-card').forEach(el => {
                 el.addEventListener('click', (e) => {
-                    e.preventDefault();
                     const id = parseInt(el.getAttribute('data-id'));
-                    pendingItem = worksData.find(w => w.id === id);
-                    
-                    const msg = i18n[currentLang].warn_msg.replace('%s', pendingItem.tw);
-                    document.getElementById('modalMsg').innerText = msg;
-                    warningModal.classList.add('active');
+                    const item = worksData.find(w => w.id === id);
+                    const needsWarning = item.tw !== '' && !verifiedItems.has(id);
+
+                    if (needsWarning) {
+                        e.preventDefault();
+                        pendingItem = item;
+                        document.getElementById('modalMsg').innerText = i18n[currentLang].warn_msg.replace('%s', item.tw);
+                        warningModal.classList.add('active');
+                    } else if (item.type === 'doujin') {
+                        e.preventDefault();
+                        openDetailModal(item);
+                    }
                 });
             });
         }
 
+        function openDetailModal(item) {
+            document.getElementById('detailImg').src = item.img;
+            document.getElementById('detailTitle').innerText = item.title[currentLang];
+            document.getElementById('detailSpec').innerText = item.spec;
+            document.getElementById('detailDesc').innerText = item.desc[currentLang];
+            document.getElementById('detailLink').href = item.link;
+            document.getElementById('detailLink').innerText = i18n[currentLang].btn_pixiv;
+            detailModal.classList.add('active');
+        }
+
         document.getElementById('btnDecline').addEventListener('click', () => warningModal.classList.remove('active'));
+        document.getElementById('closeWarning').addEventListener('click', () => warningModal.classList.remove('active'));
+        document.getElementById('closeDetail').addEventListener('click', () => detailModal.classList.remove('active'));
+        
         document.getElementById('btnAccept').addEventListener('click', () => {
             if (pendingItem) {
                 verifiedItems.add(pendingItem.id);
                 warningModal.classList.remove('active');
-                renderWorks();
-                window.open(pendingItem.link, '_blank');
+                renderWorks(); // 블러 해제
+                if (pendingItem.type === 'doujin') {
+                    openDetailModal(pendingItem);
+                } else {
+                    window.open(pendingItem.link, '_blank');
+                }
             }
         });
 
+        /* 다국어 전환 */
         document.querySelectorAll('.lang-btn').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
                 e.target.classList.add('active');
                 currentLang = e.target.getAttribute('data-lang');
-                
                 document.body.setAttribute('data-lang', currentLang);
                 
                 document.querySelectorAll('[data-i18n]').forEach(el => {
                     const key = el.getAttribute('data-i18n');
                     if (i18n[currentLang][key]) el.innerHTML = i18n[currentLang][key];
                 });
+                renderSchedule();
                 renderWorks();
                 loadSong();
             });
         });
 
-        const playlist = [
-            { title: { ko: "별의 조각", en: "Star Fragment", jp: "星の欠片", 'zh-cn': "星之碎片", 'zh-tw': "星之碎片" }, artist: "Ayeon (Synthesizer V Yi Xi)", src: "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", cover: "https://via.placeholder.com/150/a685e2/fff?text=Ayeon" }
-        ];
-
+        /* 음악 및 MV 로직 */
         let songIndex = 0;
         const audio = document.getElementById('vocaloidAudio');
         const lpRecord = document.getElementById('lpRecord');
         const playBtn = document.getElementById('playBtn');
+        const watchMvBtn = document.getElementById('watchMvBtn');
+        const mvModal = document.getElementById('mvModal');
+        const mvContainer = document.getElementById('mvContainer');
 
         function loadSong() {
             const song = playlist[songIndex];
             document.getElementById('trackTitle').innerText = song.title[currentLang];
             document.getElementById('trackArtist').innerText = song.artist;
+            document.getElementById('trackDesc').innerText = song.desc[currentLang];
             document.getElementById('albumCover').src = song.cover;
+            
+            if (song.youtubeId) {
+                watchMvBtn.style.display = 'flex';
+                watchMvBtn.onclick = () => {
+                    pauseSong();
+                    mvContainer.innerHTML = `<iframe src="https://www.youtube.com/embed/${song.youtubeId}?autoplay=1" allow="autoplay; encrypted-media" allowfullscreen></iframe>`;
+                    mvModal.classList.add('active');
+                };
+            } else {
+                watchMvBtn.style.display = 'none';
+            }
+
             if (!audio.src.includes(song.src)) audio.src = song.src;
         }
+
+        document.getElementById('closeMv').addEventListener('click', () => {
+            mvModal.classList.remove('active');
+            mvContainer.innerHTML = ''; // 영상 끄기
+        });
 
         function playSong() { audio.play(); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
         function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
 
         playBtn.addEventListener('click', () => audio.paused ? playSong() : pauseSong());
         audio.addEventListener('ended', () => { pauseSong(); document.getElementById('nextBtn').click(); });
+        document.getElementById('prevBtn').addEventListener('click', () => { songIndex = (songIndex - 1 + playlist.length) % playlist.length; loadSong(); playSong(); });
+        document.getElementById('nextBtn').addEventListener('click', () => { songIndex = (songIndex + 1) % playlist.length; loadSong(); playSong(); });
 
         const progressBar = document.getElementById('progressBar');
         function formatTime(sec) { const m = Math.floor(sec / 60); const s = Math.floor(sec % 60); return `${m}:${s < 10 ? '0' : ''}${s}`; }
@@ -493,8 +627,18 @@
         audio.addEventListener('timeupdate', () => { progressBar.value = Math.floor(audio.currentTime); document.getElementById('currentTime').innerText = formatTime(audio.currentTime); });
         progressBar.addEventListener('input', () => audio.currentTime = progressBar.value);
 
+        /* 배경 클릭 시 모달 닫기 */
+        document.querySelectorAll('.modal-overlay').forEach(modal => {
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    modal.classList.remove('active');
+                    if(modal.id === 'mvModal') mvContainer.innerHTML = '';
+                }
+            });
+        });
+
         /* 초기화 */
-        renderWorks(); loadSong();
+        renderSchedule(); renderWorks(); loadSong();
     </script>
 </body>
 </html>
