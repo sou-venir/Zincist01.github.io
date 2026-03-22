@@ -188,6 +188,25 @@
         .detail-spec { display: inline-block; background: #e8e4db; padding: 8px 15px; font-size: 0.85rem; font-weight: 700; color: var(--text-main); margin-bottom: 20px; border-radius: 5px; font-family: sans-serif; }
         .detail-desc { font-size: 0.95rem; color: var(--text-sub); margin-bottom: 30px; line-height: 1.6; }
 
+        /* 음악 레이아웃 (데스크탑: 가로 배치, 모바일: 세로 배치) */
+        .music-layout { display: flex; gap: 30px; align-items: flex-start; }
+        .lp-player-container { flex: 1.2; }
+        .playlist-container { flex: 0.8; background: #fdfdfc; border: 1px solid var(--border-color); padding: 30px; border-radius: 12px; max-height: 500px; overflow-y: auto; box-shadow: 10px 10px 0px rgba(166, 133, 226, 0.05); }
+
+        .playlist-item { display: flex; align-items: center; gap: 15px; padding: 12px 10px; border-bottom: 1px solid #f0f0f0; cursor: pointer; transition: 0.3s; border-radius: 8px; }
+        .playlist-item:last-child { border-bottom: none; }
+        .playlist-item:hover { background: rgba(166, 133, 226, 0.05); }
+        .playlist-item.active { background: rgba(166, 133, 226, 0.15); border-color: var(--point-color); }
+        .track-num { font-family: 'Playfair Display', serif; font-size: 0.9rem; font-weight: 700; color: var(--point-color); min-width: 20px; }
+        .track-info-mini { display: flex; flex-direction: column; }
+        .track-name-mini { font-size: 0.9rem; font-weight: 700; }
+        .track-artist-mini { font-size: 0.75rem; color: var(--text-sub); }
+
+        @media (max-width: 900px) {
+            .music-layout { flex-direction: column; }
+            .playlist-container { width: 100%; }
+        }
+
         /* 3. 유튜브 뮤비 모달 */
         .mv-box { width: 90%; max-width: 900px; background: #000; padding: 0; border: none; aspect-ratio: 16/9; position: relative; }
         .mv-box iframe { width: 100%; height: 100%; border: none; }
@@ -256,41 +275,52 @@
         </div>
     </section>
 
-    <!-- 🎵 음악 섹션 -->
+    <!-- 🎵 음악 섹션 (플레이리스트 레이아웃 추가) -->
     <section id="music">
         <div class="container">
             <h2 class="section-title">Sound Production</h2>
-            <div class="lp-player-container">
-                <div class="lp-visual">
-                    <div class="lp-record" id="lpRecord"><div class="lp-label"><img src="" alt="Cover" id="albumCover"></div></div>
-                </div>
-                
-                <div class="lp-controls">
-                    <div class="lp-header">
-                        <div class="lp-title" id="trackTitle">Loading...</div>
-                        <button class="btn-mv" id="watchMvBtn" style="display:none;">▶ Watch MV</button>
+            
+            <div class="music-layout">
+                <!-- 왼쪽: LP 플레이어 -->
+                <div class="lp-player-container">
+                    <div class="lp-visual">
+                        <div class="lp-record" id="lpRecord"><div class="lp-label"><img src="" alt="Cover" id="albumCover"></div></div>
                     </div>
-                    <div class="lp-artist" id="trackArtist">Loading...</div>
-                    <div class="lp-desc" id="trackDesc">Loading description...</div>
                     
-                    <audio id="vocaloidAudio"></audio>
-                    
-                    <div class="lp-btns">
-                        <button class="lp-btn" id="prevBtn">⏮</button>
-                        <button class="lp-btn lp-play-btn" id="playBtn">▶</button>
-                        <button class="lp-btn" id="nextBtn">⏭</button>
-                    </div>
+                    <div class="lp-controls">
+                        <div class="lp-header">
+                            <div class="lp-title" id="trackTitle">Loading...</div>
+                            <button class="btn-mv" id="watchMvBtn" style="display:none;">▶ Watch MV</button>
+                        </div>
+                        <div class="lp-artist" id="trackArtist">Loading...</div>
+                        <div class="lp-desc" id="trackDesc">Loading description...</div>
+                        
+                        <audio id="vocaloidAudio"></audio>
+                        
+                        <div class="lp-btns">
+                            <button class="lp-btn" id="prevBtn">⏮</button>
+                            <button class="lp-btn lp-play-btn" id="playBtn">▶</button>
+                            <button class="lp-btn" id="nextBtn">⏭</button>
+                        </div>
 
-                    <div class="progress-bar-wrap">
-                        <span id="currentTime">0:00</span>
-                        <input type="range" class="progress-bar" id="progressBar" value="0" step="1">
-                        <span id="durationTime">0:00</span>
+                        <div class="progress-bar-wrap">
+                            <span id="currentTime">0:00</span>
+                            <input type="range" class="progress-bar" id="progressBar" value="0" step="1">
+                            <span id="durationTime">0:00</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 오른쪽: 플레이리스트 리스트 -->
+                <div class="playlist-container">
+                    <h3 class="subsection-title" style="margin-bottom: 20px; font-size: 1.1rem;">Tracklist</h3>
+                    <div class="playlist-list" id="playlistList">
+                        <!-- JS에서 트랙들이 생성됨 -->
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
     <!-- 👤 프로필 섹션 -->
     <section id="about">
         <div class="container">
@@ -422,7 +452,7 @@
 
         const worksData = [
             { 
-                id: 1, type: 'doujin', tw: '근친상간', 
+                id: 1, type: 'doujin', tw: { ko: '근친상간', en: 'Incest', jp: '近親相姦', 'zh-cn': '骨科', 'zh-tw': '骨科' }, 
                 img: './142444971_p0_master1200.jpg', 
                 link: 'https://www.pixiv.net/artworks/142444971', 
                 title: { ko: '카지시유 - SIBILINGS IN BED', en: 'Kieran x Carmine - SIBILINGS IN BED', jp: 'スグゼイ - SIBILINGS IN BED', 'zh-cn': '乌栗丹瑜 - SIBILINGS IN BED', 'zh-tw': '烏栗丹瑜 - SIBILINGS IN BED' }, 
@@ -436,7 +466,7 @@
                 }
             },
             { 
-                id: 2, type: 'doujin', tw: '근친상간', 
+                id: 2, type: 'doujin', tw: { ko: '근친상간', en: 'Incest', jp: '近親相姦', 'zh-cn': '骨科', 'zh-tw': '骨科' }, 
                 img: './142481386_p0_master1200.jpg', 
                 link: 'https://www.pixiv.net/artworks/142481386', 
                 title: { ko: '카지시유 - 누나의 유혹', en: 'Kieran x Carmine - Lure of Sister', jp: 'スグゼイ - 姉の誘惑', 'zh-cn': '乌栗丹瑜 - 姐姐的诱惑', 'zh-tw': '烏栗丹瑜 - 姐姐的誘惑' }, 
@@ -450,7 +480,7 @@
                 }
             },
             { 
-                id: 3, type: 'doujin', tw: '여남박', 
+                id: 3, type: 'doujin', tw: { ko: '여남박, 컨트보이', en: 'Top female, cuntboy', jp: '女攻め,カントボーイ', 'zh-cn': 'gb', 'zh-tw': 'gb' }, 
                 img: './cover3.jpg',  
                 link: 'https://pixiv.net', // <- 링크 추가함!
                 title: { ko: '투희엔 - 예정', en: 'Hilda x N - Planned', jp: 'トコN - 予定', 'zh-cn': '主♀N - 计划中', 'zh-tw': '主♀N - 計劃中' }, 
@@ -469,7 +499,7 @@
             { id: 7, type: 'illust', tw: '', img: './128338498_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/128338498' },
             { id: 8, type: 'illust', tw: '', img: './130002618_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/130002618' },
             { id: 9, type: 'illust', tw: '', img: './134869968_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/134869968' },
-            { id: 10, type: 'illust', tw: '여남박', img: './136113680_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/136113680' }
+            { id: 10, type: 'illust', tw: { ko: '여남박, 컨트보이', en: 'Top female, cuntboy', jp: '女攻め,カントボーイ', 'zh-cn': 'gb', 'zh-tw': 'gb' }, img: './136113680_p0_master1200.jpg', link: 'https://www.pixiv.net/artworks/136113680' }
         ];
 
         const playlist = [
@@ -509,28 +539,29 @@
         function renderWorks() {
             const doujinGrid = document.getElementById('doujinGrid');
             const illustGrid = document.getElementById('illustGrid');
+            if(!doujinGrid || !illustGrid) return; // 에러 방지
+
             doujinGrid.innerHTML = ''; illustGrid.innerHTML = '';
 
             worksData.forEach(item => {
-                const needsWarning = item.tw !== '' && !verifiedItems.has(item.id);
-                // 모든 카드는 모달을 띄우거나 이동하기 위해 일단 클릭 이벤트를 받음
-                const href = 'javascript:void(0)';
-
+                // TW 다국어 처리 로직 추가
+                const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
+                const needsWarning = twValue !== '' && !verifiedItems.has(item.id);
+                
                 const html = `
-                    <a href="${href}" class="${item.type === 'doujin' ? 'catalog-card' : 'log-card'} ${item.type === 'illust' && needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
+                    <a href="javascript:void(0)" class="${item.type === 'doujin' ? 'catalog-card' : 'log-card'} ${item.type === 'illust' && needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
                         <div class="${item.type === 'doujin' ? 'catalog-img-wrap' : 'log-img-wrap'}">
                             <img src="${item.img}" onerror="this.src='https://via.placeholder.com/400x565/eee/a685e2?text=Image+Not+Found'" alt="work">
-                            ${item.type === 'illust' && needsWarning ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
+                            ${(item.type === 'illust' && needsWarning) ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
                         </div>
-                        <!-- 🚨 catalog-info(글씨 부분)를 삭제했어! -->
+                        ${item.type === 'doujin' ? `
+                            <div class="catalog-info" style="text-align:left; margin-top:10px;">
+                                <h3 style="font-size:0.95rem; font-weight:700;">${item.title[currentLang]}</h3>
+                            </div>
+                        ` : ''}
                     </a>
                 `;
-                
-                if (item.type === 'doujin') {
-                    doujinGrid.insertAdjacentHTML('beforeend', html);
-                } else {
-                    illustGrid.insertAdjacentHTML('beforeend', html);
-                }
+                item.type === 'doujin' ? doujinGrid.insertAdjacentHTML('beforeend', html) : illustGrid.insertAdjacentHTML('beforeend', html);
             });
             attachEvents();
         }
@@ -566,8 +597,11 @@
             document.getElementById('detailTitle').innerText = item.title[currentLang];
             
             const twTag = document.getElementById('detailWarning');
-            if (item.tw) {
-                twTag.innerText = `${i18n[currentLang].warning_prefix} ${item.tw}`;
+            // TW 다국어 처리
+            const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
+
+            if (twValue) {
+                twTag.innerText = `${i18n[currentLang].warning_prefix} ${twValue}`;
                 twTag.style.display = 'inline-block';
             } else {
                 twTag.style.display = 'none';
@@ -576,7 +610,6 @@
             document.getElementById('detailSpec').innerText = item.spec;
             document.getElementById('detailDesc').innerText = item.desc[currentLang];
             document.getElementById('detailLink').href = item.link; 
-            document.getElementById('detailLink').innerText = i18n[currentLang].btn_pixiv;
             detailModal.classList.add('active');
         }
 
@@ -620,6 +653,8 @@
 
         function loadSong() {
             const song = playlist[songIndex];
+            if(!song) return; // 노래 데이터 없으면 중단
+
             document.getElementById('trackTitle').innerText = song.title[currentLang];
             document.getElementById('trackArtist').innerText = song.artist;
             document.getElementById('trackDesc').innerText = song.desc[currentLang];
@@ -636,13 +671,12 @@
                 watchMvBtn.style.display = 'none';
             }
 
-            if (!audio.src.includes(song.src)) audio.src = song.src;
+            // 오디오 소스 설정 (파일이 없어도 에러나서 멈추지 않게 함)
+            if (song.src && !audio.src.includes(song.src)) {
+                audio.src = song.src;
+                audio.load(); // 새로 고침
+            }
         }
-
-        document.getElementById('closeMv').addEventListener('click', () => {
-            mvModal.classList.remove('active');
-            mvContainer.innerHTML = ''; 
-        });
 
         function playSong() { audio.play(); playBtn.innerText = '⏸'; lpRecord.classList.add('playing'); }
         function pauseSong() { audio.pause(); playBtn.innerText = '▶'; lpRecord.classList.remove('playing'); }
