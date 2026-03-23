@@ -581,7 +581,7 @@
         function renderWorks() {
             const doujinGrid = document.getElementById('doujinGrid');
             const illustGrid = document.getElementById('illustGrid');
-            if(!doujinGrid || !illustGrid) return;
+            if(!doujinGrid || !illustGrid) return; // 에러 방지
 
             doujinGrid.innerHTML = ''; illustGrid.innerHTML = '';
 
@@ -589,17 +589,13 @@
                 const twValue = (typeof item.tw === 'object') ? item.tw[currentLang] : item.tw;
                 const needsWarning = twValue !== '' && !verifiedItems.has(item.id);
                 
+                // 🚨 타이틀(catalog-info) 부분을 싹 비워버렸어!
                 const html = `
                     <a href="javascript:void(0)" class="${item.type === 'doujin' ? 'catalog-card' : 'log-card'} ${item.type === 'illust' && needsWarning ? 'tw-locked' : ''}" data-id="${item.id}">
                         <div class="${item.type === 'doujin' ? 'catalog-img-wrap' : 'log-img-wrap'}">
                             <img src="${item.img}" onerror="this.src='https://via.placeholder.com/400x565/eee/a685e2?text=Image+Not+Found'" alt="work">
                             ${(item.type === 'illust' && needsWarning) ? `<div class="police-line"><span class="police-text">${i18n[currentLang].tw_label}</span></div>` : ''}
                         </div>
-                        ${item.type === 'doujin' ? `
-                            <div class="catalog-info" style="text-align:left; margin-top:10px;">
-                                <h3 style="font-size:0.95rem; font-weight:700;">${item.title[currentLang]}</h3>
-                            </div>
-                        ` : ''}
                     </a>
                 `;
                 item.type === 'doujin' ? doujinGrid.insertAdjacentHTML('beforeend', html) : illustGrid.insertAdjacentHTML('beforeend', html);
